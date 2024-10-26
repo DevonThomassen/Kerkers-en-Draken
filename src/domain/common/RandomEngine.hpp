@@ -41,7 +41,7 @@ public:
      * @return Optional containing the random number.
      */
     template<typename T>
-    std::optional<T> generate_random(T min, T max) {
+    std::optional<T> generate_random(const T min, const T max) {
         if constexpr (std::is_integral<T>::value) {
             std::uniform_int_distribution<T> distribution(min, max);
             return distribution(engine_);

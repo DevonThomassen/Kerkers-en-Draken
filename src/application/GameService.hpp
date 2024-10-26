@@ -26,8 +26,21 @@ namespace application {
                 }
             }
 
-            void start();
+            /**
+             * @brief Starts the game
+             * @param location_amount
+             */
+            void start(int location_amount);
+
+            /**
+             * @brief Starts the game
+             * @param file_path
+             */
             void start(const char* file_path);
+
+            /**
+             * @brief Exits the game
+             */
             void exit();
 
             [[nodiscard]] bool is_running() const;

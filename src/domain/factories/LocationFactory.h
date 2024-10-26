@@ -6,7 +6,23 @@
 namespace factories {
 
     /**
-     * @class LocationFactory
+     * @namespace consts
+     * @brief A namespace for constants used in the LocationFactory class.
+     */
+    namespace consts {
+        const static int MIN_VISIBLE_OBJECTS = 0;
+        const static int MAX_VISIBLE_OBJECTS = 3;
+
+        const static int MIN_INVISIBLE_OBJECTS = 0;
+        const static int MAX_INVISIBLE_OBJECTS = 2;
+
+        const static int MIN_EXISTS = 1;
+        const static int MAX_EXISTS = 4;
+
+        const static int ENEMY_PER_ROOM = 3;
+    } // consts
+    /**
+     * @struct LocationFactory
      * @brief A factory class for creating Location objects.
      */
     struct LocationFactory {
@@ -21,6 +37,6 @@ namespace factories {
             return new domain::Location(name, x, y);
         }
     };
-}
+} // factories
 
 #endif //LOCATIONFACTORY_H

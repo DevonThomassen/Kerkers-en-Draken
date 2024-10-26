@@ -36,10 +36,22 @@ namespace presentation::console {
     void print(const std::string& message);
 
     /**
+     * @brief Print an error
+     * @param message The error
+     */
+    void error(const std::string& error);
+
+    /**
      * @brief Get the input
      * @return The input
      */
     [[nodiscard]] std::string get_input();
+
+    /**
+     * @brief Get the input
+     * @return The input
+     */
+    [[nodiscard]] std::optional<int> get_input_as_int();
 }
 
 #endif //CONSOLE_HPP

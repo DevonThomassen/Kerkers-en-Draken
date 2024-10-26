@@ -7,7 +7,7 @@ using namespace game_objects;
 
 namespace factories {
     /**
-     * @class EnemyFactory
+     * @struct EnemyFactory
      * @brief A class that represents a factory for creating enemy objects.
      */
     struct EnemyFactory {
@@ -22,6 +22,6 @@ namespace factories {
             return new EnemyObject(health, name, description);
         }
     };
-}
+} // factories
 
 #endif //ENEMYFACTORY_H

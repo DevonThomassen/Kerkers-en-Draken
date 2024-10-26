@@ -38,9 +38,9 @@ namespace presentation::console {
     }
 
     CommandKeyAndArguments get_command_key_and_arguments(const std::string& input) {
-        return CommandKeyAndArguments {
-            .key = get_command_key(input),
-            .arguments = splits(input)
+        return CommandKeyAndArguments{
+                .key = get_command_key(input),
+                .arguments = splits(input)
         };
     }
 
@@ -48,9 +48,25 @@ namespace presentation::console {
         std::cout << message;
     }
 
+    void error(const std::string& error) {
+        std::cerr << error;
+    }
+
     std::string get_input() {
         std::string input;
         std::getline(std::cin, input);
         return std::move(input);
+    }
+
+    std::optional<int> get_input_as_int() {
+        std::string input;
+        std::getline(std::cin, input);
+        try {
+            const auto parsed = std::stoi(input);
+            return std::make_optional(parsed);
+        } catch (const std::exception& e) {
+            console::error(e.what());
+            return std::nullopt;
+        }
     }
 } // presentation

@@ -10,7 +10,7 @@ namespace application {
         // delete members
     }
 
-    void GameService::start() {
+    void GameService::start(const int location_amount) {
         // random start
     }
 

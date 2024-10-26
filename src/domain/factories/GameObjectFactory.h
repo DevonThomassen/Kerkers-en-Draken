@@ -6,7 +6,6 @@
 using namespace game_objects;
 
 namespace factories {
-
     /**
      * @struct GameObjectFactory
      * @brief A struct that represents a factory for creating game objects.
@@ -22,6 +21,6 @@ namespace factories {
             return new GameObject(name, description);
         }
     };
-}
+} // factories
 
 #endif //GAMEOBJECTFACTORY_H
