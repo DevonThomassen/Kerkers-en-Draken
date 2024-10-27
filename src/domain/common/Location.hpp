@@ -17,11 +17,31 @@ namespace domain {
         Location& operator=(Location&& other) noexcept;
         ~Location();
 
+        /**
+         * @brief Returns the name of the location.
+         * @return The name of the location.
+         */
         [[nodiscard]] const char& name() const;
-        [[nodiscard]] const char& simple_description() const;
-        [[nodiscard]] const char& complete_description() const;
 
-        void add_exit(Direction direction, Location* destination);
+        /**
+         * @brief Returns the simple description of the location.
+         * @return The simple description of the location.
+         */
+        [[maybe_unused]] [[nodiscard]] const char& simple_description() const;
+
+        /**
+         * @brief Returns the complete description of the location.
+         * @return The complete description of the location.
+         */
+        [[maybe_unused]] [[nodiscard]] const char& complete_description() const;
+
+        /**
+         * @brief Adds an exit to the location.
+         * @param direction The direction of the exit.
+         * @param destination The destination of the exit.
+         * @return 0 if the exit was added successfully, -1 otherwise.
+         */
+        [[maybe_unused]] int add_exit(Direction direction, Location* destination);
 
     private:
         int id_;

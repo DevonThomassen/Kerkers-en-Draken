@@ -2,8 +2,8 @@
 #define DIRECTION_HPP
 
 namespace domain {
-    /*
-     * Constants for the directions
+    /**
+     * @brief Constants for the domain
      */
     namespace constants {
         static const char* NORTH_STR = "North";
@@ -11,7 +11,10 @@ namespace domain {
         static const char* EAST_STR = "East";
         static const char* WEST_STR = "West";
     } // constants
-
+    /**
+     * @enum Direction
+     * @brief Represents the direction of a location
+     */
     enum class Direction {
         North,
         South,
@@ -19,6 +22,11 @@ namespace domain {
         West
     };
 
+    /**
+     * @brief Returns the opposite direction of the given direction
+     * @param direction The direction
+     * @return The opposite direction
+     */
     [[nodiscard]] Direction opposite(Direction direction) {
         switch (direction) {
             case Direction::North:
@@ -32,6 +40,11 @@ namespace domain {
         }
     }
 
+    /**
+     * @brief Converts the given direction to a string
+     * @param direction The direction
+     * @return The string representation of the direction
+     */
     [[nodiscard]] const char* to_string(Direction direction) {
         switch (direction) {
             case Direction::North:

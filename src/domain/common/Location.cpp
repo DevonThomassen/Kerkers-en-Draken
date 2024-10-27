@@ -55,8 +55,13 @@ namespace domain {
         return *"TODO: This should be a complete description of the location.";
     }
 
-    void Location::add_exit(Direction direction, Location* destination) {
-        auto test = new Exit{direction, destination};
-        exits_.push_back(test);
+    int Location::add_exit(Direction direction, Location* destination) {
+        for (auto i = 0; i < exits_.size(); i++) {
+            if (exits_[i]->direction == direction) {
+                return -1;
+            }
+        }
+        exits_.push_back(new Exit{direction, destination});
+        return 0;
     }
 } // domain
