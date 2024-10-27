@@ -5,6 +5,7 @@
 #include "ICommand.hpp"
 #include "commands/CommandKey.h"
 #include "../../../application/GameService.hpp"
+#include "./common/Player.hpp"
 
 namespace presentation::commands {
 
@@ -14,10 +15,11 @@ namespace presentation::commands {
      */
     class CommandInvoker {
     public:
-        explicit CommandInvoker(const std::shared_ptr<application::GameService>& gameService);
+        explicit CommandInvoker(const std::unique_ptr<Player>& player, const std::shared_ptr<application::GameService>& gameService);
         void invoke(const CommandKey& key);
 
     private:
+        const std::unique_ptr<Player>& player_;
         const std::shared_ptr<application::GameService>& gameService_;
         std::unordered_map<CommandKey, std::unique_ptr<ICommand>> commands_;
     };

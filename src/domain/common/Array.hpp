@@ -12,29 +12,76 @@ namespace domain {
     public:
         /**
          * @brief Constructor for the Array class.
-         * @param size The reserved size of the array. Default is 4.
+         * @param capacity The reserved size of the array. Default is 4.
          */
-        explicit Array(const int size = 4)
-                : size_(size),
-                  data_(nullptr) {}
+        explicit Array(int capacity = 4)
+                : size_(0),
+                  capacity_(capacity),
+                  data_(new T* [capacity]{nullptr}) {}
+
+        Array(const Array& other)
+                : size_(other.size_),
+                  capacity_(other.capacity_),
+                  data_(new T* [other.capacity_]{nullptr}) {
+            for (int i = 0; i < size_; ++i) {
+                data_[i] = other.data_[i];
+            }
+        }
+
+        Array& operator=(const Array& other) {
+            if (this != &other) {
+                delete[] data_;
+                size_ = other.size_;
+                capacity_ = other.capacity_;
+                data_ = new T* [other.capacity_]{nullptr};
+                for (int i = 0; i < size_; ++i) {
+                    data_[i] = other.data_[i];
+                }
+            }
+            return *this;
+        }
+
+        Array(Array&& other) noexcept
+                : size_(other.size_),
+                  capacity_(other.capacity_),
+                  data_(other.data_) {
+            other.size_ = 0;
+            other.capacity_ = 0;
+            other.data_ = nullptr;
+        }
+
+        Array& operator=(Array&& other) noexcept {
+            if (this != &other) {
+                delete[] data_;
+                size_ = other.size_;
+                capacity_ = other.capacity_;
+                data_ = other.data_;
+                other.size_ = 0;
+                other.capacity_ = 0;
+                other.data_ = nullptr;
+            }
+            return *this;
+        }
 
         ~Array() {
             delete[] data_;
         }
 
         /**
-         * @brief Copy constructor for the Array class.
-         * @param other The Array object to copy.
+         * @brief Overloaded subscript operator.
+         * @param index The index of the element to access.
+         * @return The element at the specified index.
          */
-        [[nodiscard]] T& operator[](const int index) {
+        T* operator[](const int index) {
             return data_[index];
         }
 
         /**
-         * @brief Copy assignment operator for the Array class.
-         * @param other The Array object to copy.
+         * @brief Overloaded subscript operator.
+         * @param index The index of the element to access.
+         * @return The element at the specified index.
          */
-        [[nodiscard]] const T& operator[](const int index) const {
+        const T* operator[](const int index) const {
             return data_[index];
         }
 
@@ -50,46 +97,48 @@ namespace domain {
          * @brief Returns the data of the array.
          * @return The data of the array.
          */
-        [[nodiscard]] T* data() {
+        [[nodiscard]] const T** data() const {
             return data_;
         }
 
         /**
-         * @brief Resizes the array to the given size.
-         * @param new_size The new size of the array.
+         * @brief Reserves memory for the array.
+         * @param new_capacity The new capacity of the array.
          */
-        void resize(const int new_size) {
-            T* new_data = new T[new_size];
+        void reserve(const int new_capacity) {
+            T** new_data = new T* [new_capacity]{nullptr};
             for (int i = 0; i < size_; ++i) {
                 new_data[i] = data_[i];
             }
             delete[] data_;
             data_ = new_data;
-            size_ = new_size;
+            capacity_ = new_capacity;
         }
 
         /**
-         * @brief Adds an element to the end of the array.
+         * @brief Adds an element to the array.
          * @param element The element to add.
-         * @note If the array is full, the array will be resized.
-         * @note If the array is empty, the array will be resized to 1.
          */
-        void push_back(const T& element) {
-            if (size_ == 0) {
-                resize(1);
-            } else if (size_ == 1) {
-                resize(2);
-            } else if (size_ == 2) {
-                resize(4);
-            } else {
-                resize(size_ * 2);
+        void push_back(T* element) {
+            if (size_ == capacity_) {
+                reserve(capacity_ * 2);
             }
-            data_[size_ - 1] = element;
+            data_[size_++] = element;
+        }
+
+        /**
+         * @brief Removes the last element from the array.
+         */
+        void pop_back() {
+            if (size_ > 0) {
+                data_[size_--] = nullptr;
+            }
         }
 
     private:
         int size_;
-        T* data_;
+        int capacity_;
+        T** data_;
     };
 
 } // domain

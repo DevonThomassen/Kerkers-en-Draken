@@ -3,16 +3,20 @@
 
 #include <iostream>
 
-#include "common/Array.hpp"
-#include "common/IPlayer.hpp"
+//#include "common/Array.hpp"
 #include "gameobject/incl/ArmourObject.hpp"
 #include "gameobject/incl/GoldObject.hpp"
 #include "gameobject/incl/WeaponObject.hpp"
 
-using namespace domain;
+//using namespace domain;
 using namespace game_objects;
 
 namespace presentation {
+
+    /**
+     * @brief The starting health of a player.
+     */
+    static constexpr const int START_HEALTH = 20;
 
     /**
      * @class Player
@@ -28,15 +32,19 @@ namespace presentation {
         ~Player();
 
         void take_damage(int amount);
+
+        [[nodiscard]] std::string get_name() const;
+        [[nodiscard]] int get_attack_chance() const;
         [[nodiscard]] int get_health() const;
 
     private:
         const std::string name_;
-        static const int health_ = 20;
+        int health_;
         static const int attack_chance_ = 40;
-        Array<WeaponObject> weapons_;
-        Array<ArmourObject> armour_objects_;
-        Array<GoldObject> gold_amount_;
+        std::unique_ptr<GameObject> objects_;
+//        Array<WeaponObject> weapons_;
+//        Array<ArmourObject> armour_objects_;
+//        Array<GoldObject> gold_amount_;
     };
 }
 

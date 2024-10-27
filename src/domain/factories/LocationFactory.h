@@ -10,16 +10,16 @@ namespace factories {
      * @brief A namespace for constants used in the LocationFactory class.
      */
     namespace consts {
-        const static int MIN_VISIBLE_OBJECTS = 0;
-        const static int MAX_VISIBLE_OBJECTS = 3;
+        static const int MIN_VISIBLE_OBJECTS = 0;
+        static const int MAX_VISIBLE_OBJECTS = 3;
 
-        const static int MIN_INVISIBLE_OBJECTS = 0;
-        const static int MAX_INVISIBLE_OBJECTS = 2;
+        static const int MIN_INVISIBLE_OBJECTS = 0;
+        static const int MAX_INVISIBLE_OBJECTS = 2;
 
-        const static int MIN_EXISTS = 1;
-        const static int MAX_EXISTS = 4;
+        static const int MIN_EXISTS = 1;
+        static const int MAX_EXISTS = 4;
 
-        const static int ENEMY_PER_ROOM = 3;
+        static const int ENEMY_PER_ROOM = 3;
     } // consts
     /**
      * @struct LocationFactory
@@ -29,12 +29,10 @@ namespace factories {
         /**
          * @brief Creates a Location object with the given x and y coordinates.
          * @param name The name of the location.
-         * @param x The x coordinate of the location.
-         * @param y The y coordinate of the location.
          * @return A Location pointer with the given x and y coordinates.
          */
-        static domain::Location* create(const char* name, const int x, const int y) {
-            return new domain::Location(name, x, y);
+        static domain::Location* create(int id, const char* name) {
+            return new domain::Location(id, name);
         }
     };
 } // factories

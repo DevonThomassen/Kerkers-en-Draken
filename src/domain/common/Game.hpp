@@ -2,7 +2,6 @@
 #define GAME_HPP
 
 #include "Location.hpp"
-#include "IPlayer.hpp"
 
 namespace domain {
     /**

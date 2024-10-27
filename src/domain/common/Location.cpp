@@ -2,10 +2,42 @@
 
 namespace domain {
 
-    Location::Location(const char* name, int x, int y)
-            : name_(name),
-              x_(x),
-              y_(y) {}
+    Location::Location(const domain::Location& other) {
+        id_ = other.id_;
+        name_ = other.name_;
+        exits_ = other.exits_;
+    }
+
+    Location::Location(Location&& other) noexcept {
+        id_ = other.id_;
+        name_ = other.name_;
+        exits_ = other.exits_;
+    }
+
+    Location& Location::operator=(const Location& other) {
+        if (this == &other) {
+            return *this;
+        }
+        id_ = other.id_;
+        name_ = other.name_;
+        exits_ = other.exits_;
+        return *this;
+    }
+
+    Location& Location::operator=(Location&& other) noexcept {
+        if (this == &other) {
+            return *this;
+        }
+        id_ = other.id_;
+        name_ = other.name_;
+        exits_ = other.exits_;
+        return *this;
+    }
+
+    Location::Location(const int id, const char* name)
+            : id_(id),
+              name_(name),
+              exits_(3) {}
 
     Location::~Location() {
         delete[] name_;
@@ -21,5 +53,10 @@ namespace domain {
 
     const char& Location::complete_description() const {
         return *"TODO: This should be a complete description of the location.";
+    }
+
+    void Location::add_exit(Direction direction, Location* destination) {
+        auto test = new Exit{direction, destination};
+        exits_.push_back(test);
     }
 } // domain

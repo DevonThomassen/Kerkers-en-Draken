@@ -12,6 +12,7 @@ namespace application {
 
     void GameService::start(const int location_amount) {
         // random start
+        quit_ = false;
     }
 
     void GameService::start(const char* file_path) {

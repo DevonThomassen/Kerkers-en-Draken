@@ -11,13 +11,15 @@ const auto get_input = []() {
 namespace presentation {
 
     GameHandler::GameHandler()
-            : gameService_(std::shared_ptr<application::GameService>()),
-              invoker_(std::make_unique<CommandInvoker>(gameService_)),
+            : gameService_(nullptr),
+              invoker_(nullptr),
               player_(nullptr) {}
 
     void GameHandler::start() {
+        gameService_ = std::shared_ptr<application::GameService>();
         set_start_up();
         set_player();
+        invoker_ = std::make_unique<CommandInvoker>(player_, gameService_);
 
         gameService_->main_loop([&]() {
             this->iterate();

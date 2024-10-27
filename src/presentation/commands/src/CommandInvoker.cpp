@@ -8,15 +8,16 @@
 
 namespace presentation::commands {
 
-    CommandInvoker::CommandInvoker(const std::shared_ptr<application::GameService>& gameService)
-            : gameService_(gameService) {
+    CommandInvoker::CommandInvoker(const std::unique_ptr<Player>& player,
+                                   const std::shared_ptr<application::GameService>& gameService)
+            : player_(player),
+              gameService_(gameService) {
         commands_[CommandKey::START] = std::make_unique<StartCommand>(gameService_);
         commands_[CommandKey::ATTACK] = std::make_unique<AttackCommand>();
         commands_[CommandKey::SEARCH] = std::make_unique<CheckRoomCommand>();
         commands_[CommandKey::EXIT] = std::make_unique<ExitCommand>(gameService_);
         commands_[CommandKey::UNKNOWN] = std::make_unique<UnknownCommand>();
         commands_[CommandKey::HELP] = std::make_unique<HelpCommand>();
-
     }
 
     void CommandInvoker::invoke(const CommandKey& key) {

@@ -2,27 +2,31 @@
 #define LOCATION_HPP
 
 #include "Array.hpp"
+#include "Direction.hpp"
+#include "Exit.h"
 #include "../gameobject/incl/EnemyObject.hpp"
 
 namespace domain {
 
-    class Location {
+    class Location final {
     public:
-        explicit Location(const char* name, int x, int y);
+        explicit Location(int id, const char* name);
+        Location(const Location& other);
+        Location(Location&& other) noexcept;
+        Location& operator=(const Location& other);
+        Location& operator=(Location&& other) noexcept;
         ~Location();
 
         [[nodiscard]] const char& name() const;
         [[nodiscard]] const char& simple_description() const;
         [[nodiscard]] const char& complete_description() const;
 
+        void add_exit(Direction direction, Location* destination);
+
     private:
+        int id_;
         const char* name_;
-        int x_;
-        int y_;
-//        Array<game_objects::GameObject> visible_objects_ = Array<game_objects::GameObject>(0);
-//        Array<game_objects::GameObject> invisible_objects_ = Array<game_objects::GameObject>(0);
-        // exits 1 or more
-//        Array<game_objects::EnemyObject> enemies_ = Array<game_objects::EnemyObject>(0);
+        Array<Exit> exits_;
     };
 }
 

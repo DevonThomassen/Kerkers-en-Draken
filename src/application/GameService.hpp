@@ -1,8 +1,6 @@
 #ifndef GAMESERVICE_HPP
 #define GAMESERVICE_HPP
 
-#include "../domain/common/IPlayer.hpp"
-
 namespace application {
 
         /**
