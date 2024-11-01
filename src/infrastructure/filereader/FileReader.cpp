@@ -1,7 +1,7 @@
 #include "../../domain/filereader/FileReader.h"
 #include "../lib/tinyxml2.h"
 
-//#include "../../domain/builder/DungeonBuilder.hpp"
+#include "../../domain/builder/DungeonBuilder.hpp"
 
 namespace file_reader {
 
@@ -26,7 +26,7 @@ namespace file_reader {
 
         const auto element_count = root->ChildElementCount(constants::LOCATION);
 //        builder::DungeonBuilder builder(element_count);
-//        factories::LocationFactory::create(1, "");
+        factories::LocationFactory::create(1, "");
 
         for (tinyxml2::XMLElement* locatie = root->FirstChildElement(constants::LOCATION);
              locatie != nullptr; locatie = locatie->NextSiblingElement(constants::LOCATION)) {

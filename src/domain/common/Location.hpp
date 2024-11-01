@@ -2,7 +2,6 @@
 #define LOCATION_HPP
 
 #include "Array.hpp"
-#include "Direction.hpp"
 #include "Exit.h"
 #include "../gameobject/incl/EnemyObject.hpp"
 

@@ -1,8 +1,11 @@
 #ifndef DUNGEONBUILDER_HPP
 #define DUNGEONBUILDER_HPP
 
-#include "../common/Location.hpp"
 #include "../factories/LocationFactory.h"
+
+namespace domain {
+    enum class Direction;
+}
 
 using namespace domain;
 using namespace factories;

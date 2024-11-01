@@ -1,4 +1,5 @@
 #include "Location.hpp"
+#include "Direction.hpp"
 
 namespace domain {
 

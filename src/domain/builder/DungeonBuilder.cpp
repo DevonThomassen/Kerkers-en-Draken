@@ -1,5 +1,6 @@
 #include "DungeonBuilder.hpp"
 
+#include "../common/Direction.hpp"
 #include "../factories/LocationFactory.h"
 
 using namespace domain;
