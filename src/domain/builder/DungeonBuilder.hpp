@@ -3,6 +3,10 @@
 
 #include "../common/Array.hpp"
 
+namespace game_objects {
+    class EnemyObject;
+}
+
 namespace domain {
     class Location;
     enum class Direction;
@@ -33,6 +37,8 @@ namespace builder {
          * @return 0 if successful, -1 if the source location is not found, -2 if the destination location is not found
          */
         int bind_locations(int src, int dest, Direction direction);
+
+        void bind_enemy_to_location(int location_id, game_objects::EnemyObject* enemy);
 
         /**
          * @brief Gets the locations of the dungeon

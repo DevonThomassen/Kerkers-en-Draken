@@ -8,7 +8,9 @@ namespace application {
             : quit_(true),
               locations_(nullptr) {}
 
-    GameService::~GameService() = default;
+    GameService::~GameService() {
+        delete locations_;
+    }
 
     int GameService::start(const int location_amount) {
         // random start
@@ -17,8 +19,8 @@ namespace application {
     }
 
     int GameService::start(const char* file_path) {
-        const auto x = file_reader::read_file(file_path);
-        locations_ = x;
+        locations_ = file_reader::read_file(file_path);
+        auto test = (*locations_)[1];
         quit_ = false;
         return 0;
     }

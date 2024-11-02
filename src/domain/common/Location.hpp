@@ -3,7 +3,11 @@
 
 #include "Array.hpp"
 #include "Exit.h"
-#include "../gameobject/incl/EnemyObject.hpp"
+
+namespace game_objects {
+    class GameObject;
+    class EnemyObject;
+}
 
 namespace domain {
 
@@ -48,11 +52,16 @@ namespace domain {
          */
         [[maybe_unused]] int add_exit(Direction direction, Location* destination);
 
+        Exit& get_exit(Direction direction);
+
+        int add_object(game_objects::GameObject* game_object);
+
     private:
         int id_;
         const char* name_;
         const char* description_;
-        Array<Exit> exits_;
+        Array<game_objects::GameObject> objects_;
+        ExitManager exits_;
     };
 }
 

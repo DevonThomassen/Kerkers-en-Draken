@@ -1,17 +1,32 @@
 #include "Location.hpp"
 
+#include "../gameobject/incl/GameObject.hpp"
+#include "../gameobject/incl/EnemyObject.hpp"
+
 namespace domain {
+
+    Location::Location(const int id, const char* name, const char* description)
+            : id_(id),
+              name_(name),
+              description_(description),
+              objects_(3),
+              exits_() {}
+//              exits_(3) {}
 
     Location::Location(const domain::Location& other) {
         id_ = other.id_;
         name_ = other.name_;
-//        exits_ = other.exits_;
+        description_ = other.description_;
+        objects_ = other.objects_;
+        exits_ = other.exits_;
     }
 
     Location::Location(Location&& other) noexcept {
         id_ = other.id_;
         name_ = other.name_;
-//        exits_ = other.exits_;
+        description_ = other.description_;
+        objects_ = other.objects_;
+        exits_ = other.exits_;
     }
 
     Location& Location::operator=(const Location& other) {
@@ -20,7 +35,9 @@ namespace domain {
         }
         id_ = other.id_;
         name_ = other.name_;
-//        exits_ = other.exits_;
+        description_ = other.description_;
+        objects_ = other.objects_;
+        exits_ = other.exits_;
         return *this;
     }
 
@@ -30,15 +47,11 @@ namespace domain {
         }
         id_ = other.id_;
         name_ = other.name_;
-//        exits_ = other.exits_;
+        description_ = other.description_;
+        objects_ = other.objects_;
+        exits_ = other.exits_;
         return *this;
     }
-
-    Location::Location(const int id, const char* name, const char* description)
-            : id_(id),
-              name_(name),
-              description_(description),
-              exits_(3) {}
 
     Location::~Location() {
         delete[] name_;
@@ -61,12 +74,18 @@ namespace domain {
     }
 
     int Location::add_exit(Direction direction, Location* destination) {
-//        for (auto i = 0; i < exits_.size(); i++) {
-//            if (exits_[i]->direction == direction) {
-//                return -1;
-//            }
-//        }
-//        exits_.push_back(new Exit{direction, destination});
+        if (destination == nullptr) {
+            return -1;
+        }
+        exits_.add_exit(direction, destination);
+        return 0;
+    }
+
+    int Location::add_object(game_objects::GameObject* game_object) {
+        if (game_object == nullptr) {
+            return -1;
+        }
+        objects_.push_back(game_object);
         return 0;
     }
 } // domain

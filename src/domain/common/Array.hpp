@@ -17,7 +17,7 @@ namespace domain {
         explicit Array(int capacity = 4)
                 : size_(0),
                   capacity_(capacity),
-                  data_(new T*[capacity]) {}
+                  data_(new T* [capacity]) {}
 
         /**
          * @brief Copy constructor.
@@ -37,7 +37,18 @@ namespace domain {
          * @param other The Array to copy.
          * @return The copied Array.
          */
-        Array& operator=(const Array& other) = delete;
+        Array& operator=(const Array& other) {
+            if (this != &other) {
+                delete[] data_;
+                size_ = other.size_;
+                capacity_ = other.capacity_;
+                data_ = new T* [other.capacity_];
+                for (int i = 0; i < size_; ++i) {
+                    data_[i] = other.data_[i];
+                }
+            }
+            return *this;
+        }
 
         /**
          * @brief Move constructor.
@@ -57,7 +68,18 @@ namespace domain {
          * @param other The Array to move.
          * @return The moved Array.
          */
-        Array& operator=(Array&& other) noexcept = delete;
+        Array& operator=(Array&& other) noexcept {
+            if (this != &other) {
+                delete[] data_;
+                size_ = other.size_;
+                capacity_ = other.capacity_;
+                data_ = other.data_;
+                other.size_ = 0;
+                other.capacity_ = 0;
+                other.data_ = nullptr;
+            }
+            return *this;
+        }
 
         /**
          * @brief Destructor for the Array class.

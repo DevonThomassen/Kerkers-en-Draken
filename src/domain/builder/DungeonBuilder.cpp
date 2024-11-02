@@ -2,6 +2,7 @@
 
 #include "../factories/LocationFactory.h"
 #include "../common/Direction.hpp"
+#include "../gameobject/incl/EnemyObject.hpp"
 
 #define SOURCE_NOT_FOUND (-1)
 #define DESTINATION_NOT_FOUND (-2)
@@ -44,6 +45,13 @@ namespace builder {
         auto* location = locations_;
         locations_ = nullptr;
         return location;
+    }
+
+    void DungeonBuilder::bind_enemy_to_location(int location_id, game_objects::EnemyObject* enemy) {
+        auto* location = find_location_by_id(location_id);
+        if (location != nullptr) {
+            location->add_object(enemy);
+        }
     }
 
     Location* DungeonBuilder::find_location_by_id(int id) const {

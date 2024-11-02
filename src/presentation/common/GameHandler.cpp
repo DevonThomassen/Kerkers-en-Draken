@@ -16,7 +16,7 @@ namespace presentation {
               player_(nullptr) {}
 
     void GameHandler::start() {
-        std::make_shared<application::GameService>();
+        gameService_ = std::make_shared<application::GameService>();
         set_start_up();
         set_player();
         invoker_ = std::make_unique<CommandInvoker>(player_, gameService_);
@@ -35,7 +35,9 @@ namespace presentation {
         if (path == "gen") {
             generate_locations();
         } else {
-            gameService_->start(path.c_str());
+            const auto path2 = "/Users/devonthomassen/CLionProjects/kerkers-en-draken/resources/kasteelruine.xml";
+            gameService_->start(path2);
+//            gameService_->start(path.c_str());
         }
     }
 

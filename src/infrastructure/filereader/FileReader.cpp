@@ -1,9 +1,11 @@
 #include "../../domain/filereader/FileReader.h"
 #include "../lib/tinyxml2.h"
+#include <sstream>
 #include <iostream>
 #include "../../domain/builder/DungeonBuilder.hpp"
 #include "../../domain/common/Direction.hpp"
 #include "../../domain/common/Location.hpp"
+#include "../../domain/database/EnemyRepository.hpp"
 
 namespace file_reader {
     /*
@@ -68,6 +70,7 @@ namespace file_reader {
             builder.add_location(id.value(), name, description);
         }
 
+        repository::EnemyRepository enemyRepository;
         for (tinyxml2::XMLElement* location = root->FirstChildElement(constants::LOCATION);
              location != nullptr; location = location->NextSiblingElement(constants::LOCATION)) {
 
@@ -94,11 +97,18 @@ namespace file_reader {
                 }
             }
 
-            const char* vijand = location->Attribute("vijand");
+            const char* enemy = location->Attribute("vijand");
+            if (enemy != nullptr) {
+                std::stringstream ss(enemy);
+                std::string item;
+                while (std::getline(ss, item, ';')) {
+                    builder.bind_enemy_to_location(id.value(), enemyRepository.get_enemy(item.c_str()));
+                }
+            }
             const char* objectenverborgen = location->Attribute("objectenverborgen");
             const char* objectenzichtbaar = location->Attribute("objectenzichtbaar");
         }
 
-        return builder.get_locations();;
+        return builder.get_locations();
     }
 } // file_reader

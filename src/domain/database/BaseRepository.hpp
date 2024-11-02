@@ -3,7 +3,7 @@
 
 #include <sqlite3.h>
 
-#define DEFAULT_DB_PATH "kerkers_en_draken.db"
+#define DEFAULT_DB_PATH "/Users/devonthomassen/CLionProjects/kerkers-en-draken/resources/kerkersendraken.db"
 
 namespace repository {
 
@@ -19,6 +19,7 @@ namespace repository {
     protected:
         sqlite3* db_;
 
+    public:
         [[nodiscard]] int open();
         [[nodiscard]] int close() const;
     };
