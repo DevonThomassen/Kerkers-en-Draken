@@ -3,6 +3,9 @@ project(kerkers_en_draken)
 
 set(CMAKE_CXX_STANDARD 26)
 
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address -g")
+#set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fsanitize=address")
+
 set(SRC_DIR src)
 set(DOMAIN_DIR ${SRC_DIR}/domain)
 set(APPLICATION_DIR ${SRC_DIR}/application)

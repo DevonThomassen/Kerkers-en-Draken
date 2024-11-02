@@ -20,7 +20,7 @@
             oplopen.
         </beschrijving>
     </locatie>
-    <locatie id="5" west="3" vijand="Oger" objectenzichtbaar="mali�nkolder;langzwaard"
+    <locatie id="5" west="3" vijand="Oger" objectenzichtbaar="maliënkolder;langzwaard"
              objectenverborgen="zak met goudstukken">Oostertoren
         <beschrijving>Deze stenen toren staat nog overeind, ook al is de houten trap naar boven weggerot.</beschrijving>
     </locatie>

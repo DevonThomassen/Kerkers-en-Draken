@@ -27,7 +27,7 @@ namespace domain {
      * @param direction The direction
      * @return The opposite direction
      */
-    [[nodiscard]] Direction opposite(Direction direction) {
+    [[nodiscard]] static Direction opposite(Direction direction) {
         switch (direction) {
             case Direction::North:
                 return Direction::South;
@@ -45,7 +45,7 @@ namespace domain {
      * @param direction The direction
      * @return The string representation of the direction
      */
-    [[nodiscard]] const char* to_string(Direction direction) {
+    [[nodiscard]] static const char* to_string(Direction direction) {
         switch (direction) {
             case Direction::North:
                 return constants::NORTH_STR;

@@ -16,7 +16,7 @@ namespace presentation {
               player_(nullptr) {}
 
     void GameHandler::start() {
-        gameService_ = std::shared_ptr<application::GameService>();
+        std::make_shared<application::GameService>();
         set_start_up();
         set_player();
         invoker_ = std::make_unique<CommandInvoker>(player_, gameService_);

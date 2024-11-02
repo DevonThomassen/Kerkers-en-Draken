@@ -28,11 +28,13 @@ namespace factories {
     struct LocationFactory {
         /**
          * @brief Creates a Location object with the given x and y coordinates.
+         * @param id The id of the location.
          * @param name The name of the location.
+         * @param description The description of the location.
          * @return A Location pointer with the given x and y coordinates.
          */
-        static domain::Location* create(int id, const char* name) {
-            return new domain::Location(id, name);
+        static domain::Location* create(int id, const char* name, const char* description) {
+            return new domain::Location(id, name, description);
         }
     };
 } // factories

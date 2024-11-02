@@ -9,7 +9,7 @@ namespace domain {
 
     class Location final {
     public:
-        explicit Location(int id, const char* name);
+        explicit Location(int id, const char* name, const char* description);
         Location(const Location& other);
         Location(Location&& other) noexcept;
         Location& operator=(const Location& other);
@@ -17,22 +17,28 @@ namespace domain {
         ~Location();
 
         /**
+         * @brief Returns the id of the location.
+         * @return The id of the location.
+         */
+        [[nodiscard]] int id() const;
+
+        /**
          * @brief Returns the name of the location.
          * @return The name of the location.
          */
-        [[nodiscard]] const char& name() const;
+        [[nodiscard]] const char* name() const;
 
         /**
          * @brief Returns the simple description of the location.
          * @return The simple description of the location.
          */
-        [[maybe_unused]] [[nodiscard]] const char& simple_description() const;
+        [[maybe_unused]] [[nodiscard]] const char* simple_description() const;
 
         /**
          * @brief Returns the complete description of the location.
          * @return The complete description of the location.
          */
-        [[maybe_unused]] [[nodiscard]] const char& complete_description() const;
+        [[maybe_unused]] [[nodiscard]] const char* complete_description() const;
 
         /**
          * @brief Adds an exit to the location.
@@ -45,6 +51,7 @@ namespace domain {
     private:
         int id_;
         const char* name_;
+        const char* description_;
         Array<Exit> exits_;
     };
 }

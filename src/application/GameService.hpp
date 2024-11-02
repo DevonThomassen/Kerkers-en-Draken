@@ -1,6 +1,14 @@
 #ifndef GAMESERVICE_HPP
 #define GAMESERVICE_HPP
 
+#include "../domain/common/Array.hpp"
+
+namespace domain {
+    class Location;
+}
+
+using namespace domain;
+
 namespace application {
 
         /**
@@ -28,13 +36,13 @@ namespace application {
              * @brief Starts the game
              * @param location_amount
              */
-            void start(int location_amount);
+            int start(int location_amount);
 
             /**
              * @brief Starts the game
              * @param file_path
              */
-            void start(const char* file_path);
+            int start(const char* file_path);
 
             /**
              * @brief Exits the game
@@ -44,6 +52,7 @@ namespace application {
             [[nodiscard]] bool is_running() const;
         private:
             bool quit_;
+            Array<Location>* locations_;
         };
 }
 

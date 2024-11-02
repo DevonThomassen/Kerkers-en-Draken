@@ -17,30 +17,32 @@ namespace domain {
         explicit Array(int capacity = 4)
                 : size_(0),
                   capacity_(capacity),
-                  data_(new T* [capacity]{nullptr}) {}
+                  data_(new T*[capacity]) {}
 
+        /**
+         * @brief Copy constructor.
+         * @param other The Array to copy.
+         */
         Array(const Array& other)
                 : size_(other.size_),
                   capacity_(other.capacity_),
-                  data_(new T* [other.capacity_]{nullptr}) {
+                  data_(new T* [other.capacity_]) {
             for (int i = 0; i < size_; ++i) {
                 data_[i] = other.data_[i];
             }
         }
 
-        Array& operator=(const Array& other) {
-            if (this != &other) {
-                delete[] data_;
-                size_ = other.size_;
-                capacity_ = other.capacity_;
-                data_ = new T* [other.capacity_]{nullptr};
-                for (int i = 0; i < size_; ++i) {
-                    data_[i] = other.data_[i];
-                }
-            }
-            return *this;
-        }
+        /**
+         * @brief Copy assignment operator.
+         * @param other The Array to copy.
+         * @return The copied Array.
+         */
+        Array& operator=(const Array& other) = delete;
 
+        /**
+         * @brief Move constructor.
+         * @param other The Array to move.
+         */
         Array(Array&& other) noexcept
                 : size_(other.size_),
                   capacity_(other.capacity_),
@@ -50,19 +52,16 @@ namespace domain {
             other.data_ = nullptr;
         }
 
-        Array& operator=(Array&& other) noexcept {
-            if (this != &other) {
-                delete[] data_;
-                size_ = other.size_;
-                capacity_ = other.capacity_;
-                data_ = other.data_;
-                other.size_ = 0;
-                other.capacity_ = 0;
-                other.data_ = nullptr;
-            }
-            return *this;
-        }
+        /**
+         * @brief Move assignment operator.
+         * @param other The Array to move.
+         * @return The moved Array.
+         */
+        Array& operator=(Array&& other) noexcept = delete;
 
+        /**
+         * @brief Destructor for the Array class.
+         */
         ~Array() {
             delete[] data_;
         }
@@ -81,7 +80,7 @@ namespace domain {
          * @param index The index of the element to access.
          * @return The element at the specified index.
          */
-        const T* operator[](const int index) const {
+        const T& operator[](const int index) const {
             return data_[index];
         }
 
