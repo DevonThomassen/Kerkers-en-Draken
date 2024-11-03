@@ -10,7 +10,7 @@ namespace game_objects {
      */
     class GoldObject final : public GameObject {
     public:
-        explicit GoldObject(const char* name, const char* description, int amount);
+        explicit GoldObject(const char* name, const char* description, int amount, bool invisible = false);
         GoldObject(const GoldObject& other);
         GoldObject(GoldObject&& other) noexcept;
         GoldObject& operator=(const GoldObject& other);

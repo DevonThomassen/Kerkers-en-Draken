@@ -10,7 +10,7 @@ namespace game_objects {
      */
     class ArmourObject final : public GameObject {
     public:
-        explicit ArmourObject(const char* name, const char* description, int protection);
+        explicit ArmourObject(const char* name, const char* description, int protection, bool invisible = false);
         ArmourObject(const ArmourObject& other);
         ArmourObject(ArmourObject&& other) noexcept;
         ArmourObject& operator=(const ArmourObject& other);

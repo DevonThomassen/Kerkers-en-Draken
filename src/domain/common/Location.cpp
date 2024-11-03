@@ -118,7 +118,7 @@ namespace domain {
     game_objects::GameObject** Location::get_visible_objects() const {
         auto** visible_objects = new game_objects::GameObject*[objects_.size()];
         for (auto i = 0; i < objects_.size(); ++i) {
-            visible_objects[i] = objects_[i];
+//            visible_objects[i] = objects_[i];
         }
         return visible_objects;
     }

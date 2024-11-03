@@ -115,7 +115,7 @@ namespace file_reader {
                 std::string item;
                 while (std::getline(ss, item, ';')) {
                     builder.bind_game_object_to_location(id.value(),
-                                                         database::DatabaseRepository::get_item(item.c_str()));
+                                                         database::DatabaseRepository::get_item(item.c_str(), true));
                 }
             }
             const char* visible_objects = location->Attribute(constants::VISIBLE_OBJECTS);

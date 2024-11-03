@@ -2,8 +2,8 @@
 
 namespace game_objects {
 
-    GameObject::GameObject(const char* name, const char* description)
-            : name_(name), description_(description) {}
+    GameObject::GameObject(const char* name, const char* description, const bool invisible)
+            : name_(name), description_(description), invisible_(invisible) {}
 
     GameObject::GameObject(const GameObject& other) = default;
     GameObject::GameObject(GameObject&& other) noexcept = default;
@@ -16,6 +16,10 @@ namespace game_objects {
 
     const char* GameObject::get_description() const {
         return description_;
+    }
+
+    bool GameObject::is_invisible() const {
+        return invisible_;
     }
 
 } // game_objects

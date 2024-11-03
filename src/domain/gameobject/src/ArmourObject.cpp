@@ -2,8 +2,9 @@
 
 namespace game_objects {
 
-    ArmourObject::ArmourObject(const char* name, const char* description, int protection)
-            : GameObject(name, description), _protection(protection) {}
+    ArmourObject::ArmourObject(const char* name, const char* description, const int protection, const bool invisible)
+            : GameObject(name, description, invisible),
+              _protection(protection) {}
 
     ArmourObject::ArmourObject(const ArmourObject& other) = default;
     ArmourObject::ArmourObject(ArmourObject&& other) noexcept = default;

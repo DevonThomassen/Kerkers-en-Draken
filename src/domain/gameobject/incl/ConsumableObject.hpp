@@ -10,7 +10,7 @@ namespace game_objects {
      */
     class ConsumableObject final : public GameObject {
     public:
-        explicit ConsumableObject(const char* name, const char* description, int value);
+        explicit ConsumableObject(const char* name, const char* description, int value, bool invisible = false);
         ConsumableObject(const ConsumableObject& other);
         ConsumableObject(ConsumableObject&& other) noexcept;
         ConsumableObject& operator=(const ConsumableObject& other);

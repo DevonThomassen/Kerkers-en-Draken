@@ -8,7 +8,7 @@ namespace game_objects {
      */
     class GameObject {
     public:
-        explicit GameObject(const char* name, const char* description);
+        explicit GameObject(const char* name, const char* description, bool invisible = false);
         GameObject(const GameObject& other);
         GameObject(GameObject&& other) noexcept;
         GameObject& operator=(const GameObject& other);
@@ -27,9 +27,16 @@ namespace game_objects {
          */
         [[nodiscard]] const char* get_description() const;
 
+        /**
+         * @brief Get the invisibility of the game object.
+         * @return The invisibility of the game object.
+         */
+        [[nodiscard]] bool is_invisible() const;
+
     private:
         const char* name_;
         const char* description_;
+        bool invisible_;
     };
 }
 

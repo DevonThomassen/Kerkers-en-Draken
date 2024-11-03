@@ -2,9 +2,9 @@
 
 namespace game_objects {
 
-    GoldObject::GoldObject(const char* name, const char* description, const int amount)
-            : amount_(amount),
-              GameObject(name, description) {}
+    GoldObject::GoldObject(const char* name, const char* description, const int amount, const bool invisible)
+            : GameObject(name, description, invisible),
+              amount_(amount) {}
 
     GoldObject::GoldObject(const GoldObject& other) = default;
     GoldObject::GoldObject(GoldObject&& other) noexcept = default;

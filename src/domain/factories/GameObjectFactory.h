@@ -23,9 +23,10 @@ namespace factories {
          * @param name The name of the game object.
          * @param description The description of the game object.
          * @param value The value of the game object.
+         * @param invisible A boolean that represents if the game object is invisible.
          * @return A GameObject with the given name and description.
          */
-        static GameObject* create(const char* type, const char* name, const char* description, int value);
+        static GameObject* create(const char* type, const char* name, const char* description, int value, bool invisible = false);
     };
 } // factories
 

@@ -19,7 +19,7 @@ namespace database {
         virtual ~DatabaseRepository() = delete;
 
         [[nodiscard]] static game_objects::EnemyObject* get_enemy(const char* name);
-        [[nodiscard]] static game_objects::GameObject* get_item(const char* name);
+        [[nodiscard]] static game_objects::GameObject* get_item(const char* name, bool invisible = false);
 
         static int open();
         static int close();
