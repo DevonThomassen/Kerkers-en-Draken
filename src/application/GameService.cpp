@@ -8,6 +8,7 @@ namespace application {
 
     GameService::GameService()
             : quit_(true),
+              damage_of_the_round_(0),
               locations_(nullptr),
               current_location_index_(0) {}
 
@@ -27,6 +28,16 @@ namespace application {
         return 0;
     }
 
+    void GameService::turn() {
+        damage_of_the_round_ = get_current_location().total_damage_room();
+
+        // move all enemies
+        for (int i = 0; i < locations_->size(); i++) {
+            auto location = (*locations_)[i];
+            location->move_enemies();
+        }
+    }
+
     void GameService::exit() {
         quit_ = true;
     }
@@ -40,7 +51,7 @@ namespace application {
     }
 
     bool GameService::go_to_next_location(Direction direction) {
-        const auto* location=  (*locations_)[current_location_index_];
+        const auto* location = (*locations_)[current_location_index_];
         const auto new_id = location->get_exit(direction);
         if (new_id != -1) {
             for (int i = 0; i < locations_->size(); i++) {
@@ -59,6 +70,19 @@ namespace application {
     }
 
     void GameService::teleport(int amount) {
-        // teleport!
+        auto location = get_current_location_ptr();
+        for (int i = 0; i < amount; i++) {
+            location = location->get_random_exit()->destination;
+        }
+        for (int i = 0; i < locations_->size(); i++) {
+            if ((*locations_)[i] == location) {
+                current_location_index_ = i;
+                return;
+            }
+        }
+    }
+
+    int GameService::damage_of_the_round() const {
+        return damage_of_the_round_;
     }
 }

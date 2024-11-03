@@ -31,6 +31,7 @@ namespace application {
         void main_loop(Loop loop) {
             while (!quit_) {
                 loop();
+                turn();
             }
         }
 
@@ -46,6 +47,8 @@ namespace application {
          */
         int start(const char* file_path);
 
+        void turn();
+
         /**
          * @brief Exits the game
          */
@@ -58,8 +61,11 @@ namespace application {
 
         bool go_to_next_location(Direction direction);
         void teleport(int amount);
+        [[nodiscard]] int damage_of_the_round() const;
+
     private:
         bool quit_;
+        int damage_of_the_round_;
         Array <Location>* locations_;
         int current_location_index_;
     };

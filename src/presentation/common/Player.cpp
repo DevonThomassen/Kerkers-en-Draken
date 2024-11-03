@@ -7,6 +7,7 @@
 #include "gameobject/incl/ConsumableObject.hpp"
 #include "gameobject/incl/GoldObject.hpp"
 #include "gameobject/incl/WeaponObject.hpp"
+#include "../domain/common/RandomEngine.hpp"
 
 namespace presentation {
 
@@ -26,7 +27,17 @@ namespace presentation {
     Player::~Player() = default;
 
     void Player::take_damage(const int amount) {
-
+        if (god_mode_) {
+            return;
+        }
+        if (const auto armour = dynamic_cast<ArmourObject*>(armour_.get())) {
+            const auto damage = amount - armour->protection();
+            if (damage <= 0) {
+                return;
+            }
+            health_ -= damage;
+        }
+        health_ -= amount;
     }
 
     std::string Player::get_name() const {
@@ -121,7 +132,9 @@ namespace presentation {
             return 0;
         }
         if (type == "ervaringsdrank") {
-            attack_chance_ += value;
+            if (attack_chance_ + value < 90) {
+                attack_chance_ += value;
+            }
             return 0;
         }
         if (type == "teleportatiedrank") {
@@ -158,6 +171,16 @@ namespace presentation {
 
     bool Player::is_god_mode() const {
         return god_mode_;
+    }
+
+    int Player::do_attack() const {
+        auto r = RandomEngine::get_instance().hit_percentage(attack_chance_);
+        if (r.has_value() && r.value()) {
+            if (const auto weapon = dynamic_cast<WeaponObject*>(weapon_.get())) {
+                return weapon->get_damage();
+            }
+        }
+        return 0;
     }
 
 } // presentation

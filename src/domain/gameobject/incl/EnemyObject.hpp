@@ -20,6 +20,7 @@ namespace game_objects {
         [[nodiscard]] int get_health() const;
         [[nodiscard]] int get_attack_chance() const;
         [[nodiscard]] int get_damage() const;
+        void take_damage(int damage);
 
     private:
         int health_;

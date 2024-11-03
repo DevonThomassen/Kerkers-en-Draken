@@ -91,7 +91,13 @@ namespace presentation::console {
         }
         if (command == "godmode") {
             return {
-                    CommandKey::GODMODE
+                    CommandKey::GOD_MODE
+            };
+        }
+        if(command == "sla") {
+            return {
+                    CommandKey::ATTACK,
+                    arguments
             };
         }
         return {

@@ -23,6 +23,8 @@ namespace domain {
 
         [[nodiscard]] const char* get_possible_directions() const ;
 
+        [[nodiscard]] Exit* get_random_exit() const;
+
     private:
         Exit* exits_[4]{};
         int size_;

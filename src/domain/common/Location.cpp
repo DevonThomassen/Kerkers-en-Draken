@@ -5,6 +5,7 @@
 #include "../gameobject/incl/GameObject.hpp"
 #include "../gameobject/incl/EnemyObject.hpp"
 #include "../../domain/common/Direction.hpp"
+#include "RandomEngine.hpp"
 
 namespace domain {
 
@@ -133,5 +134,33 @@ namespace domain {
                 objects_[i]->set_invisible(false);
             }
         }
+    }
+
+    void Location::move_enemies() {
+        for (auto i = 0; i < objects_.size(); ++i) {
+            auto* enemy = dynamic_cast<game_objects::EnemyObject*>(objects_[i]);
+            if (enemy != nullptr && enemy->get_health() > 0) {
+                auto result = RandomEngine::get_instance().hit_percentage(50);
+                if (result.has_value() && result.value()) {
+                    exits_.get_random_exit()->destination->add_object(enemy);
+                    objects_.remove_at_index(i);
+                }
+            }
+        }
+    }
+
+    Exit* Location::get_random_exit() {
+        return exits_.get_random_exit();
+    }
+
+    int Location::total_damage_room() {
+        auto total_damage = 0;
+        for (auto i = 0; i < objects_.size(); ++i) {
+            auto* enemy = dynamic_cast<game_objects::EnemyObject*>(objects_[i]);
+            if (enemy != nullptr) {
+                total_damage += enemy->get_damage();
+            }
+        }
+        return total_damage;
     }
 } // domain

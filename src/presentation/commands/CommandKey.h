@@ -24,7 +24,7 @@ namespace presentation::commands {
         CONSUME,
         WAIT,
         HAND,
-        GODMODE
+        GOD_MODE
     };
 
     /**

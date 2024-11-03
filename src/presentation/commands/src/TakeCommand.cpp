@@ -4,6 +4,7 @@
 #include "../domain/common/Location.hpp"
 #include "common/Console.hpp"
 #include "common/Player.hpp"
+#include "gameobject/incl/GameObject.hpp"
 
 namespace presentation::commands {
 
@@ -19,6 +20,7 @@ namespace presentation::commands {
             console::error("Dit object bestaat niet\n");
             return;
         }
+        console::print(std::format("Je pakt {} op.", game_object->get_name()));
         player_->add_object(game_object);
     }
 

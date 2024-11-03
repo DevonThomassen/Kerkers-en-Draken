@@ -65,6 +65,12 @@ namespace presentation {
     }
 
     void GameHandler::iterate() {
+        player_->take_damage(gameService_->damage_of_the_round());
+        if (player_->get_health() <= 0) {
+            console::print("Je bent dood.\n");
+            gameService_->exit();
+            return;
+        }
         print("Voer een commando in: ");
         const auto [commandKey, arguments] = console::get_command_key(console::get_input());
         invoker_->invoke(commandKey, arguments);

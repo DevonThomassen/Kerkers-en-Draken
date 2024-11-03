@@ -65,6 +65,10 @@ namespace domain {
          */
         void search_room();
 
+        [[nodiscard]]int total_damage_room();
+        void move_enemies();
+        Exit* get_random_exit();
+
     private:
         int id_;
         const char* name_;

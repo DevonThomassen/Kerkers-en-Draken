@@ -17,8 +17,14 @@ namespace game_objects {
         ArmourObject& operator=(ArmourObject&& other) noexcept;
         ~ArmourObject() override;
 
+        /**
+         * @brief Returns the protection of the armour.
+         * @return The protection of the armour.
+         */
+        [[nodiscard]] int protection() const;
+
     private:
-        int _protection;
+        int protection_;
     };
 }
 #endif //ARMOUROBJECT_HPP

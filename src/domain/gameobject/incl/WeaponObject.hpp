@@ -17,6 +17,8 @@ namespace game_objects {
         WeaponObject& operator=(WeaponObject&& other) noexcept;
         ~WeaponObject() override;
 
+        [[nodiscard]] int get_damage() const;
+
     private:
         int damage_;
     };

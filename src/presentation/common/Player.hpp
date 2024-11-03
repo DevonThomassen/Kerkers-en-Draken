@@ -53,6 +53,7 @@ namespace presentation {
 
         void toggle_god_mode();
         [[nodiscard]] bool is_god_mode() const;
+        [[nodiscard]] int do_attack() const;
 
     private:
         const std::string name_;

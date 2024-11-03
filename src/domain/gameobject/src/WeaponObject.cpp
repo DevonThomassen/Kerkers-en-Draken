@@ -6,6 +6,10 @@ namespace game_objects {
             : GameObject(name, description, invisible),
               damage_(damage) {}
 
+    int WeaponObject::get_damage() const {
+        return damage_;
+    }
+
     WeaponObject::WeaponObject(const WeaponObject& other) = default;
     WeaponObject::WeaponObject(WeaponObject&& other) noexcept = default;
     WeaponObject& WeaponObject::operator=(const WeaponObject& other) = default;

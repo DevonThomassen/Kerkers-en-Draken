@@ -37,7 +37,7 @@ namespace presentation::commands {
         commands_[CommandKey::CONSUME] = std::make_unique<ConsumeCommand>(gameService_, player_);
         commands_[CommandKey::WAIT] = std::make_unique<WaitCommand>();
         commands_[CommandKey::HAND] = std::make_unique<HandCommand>(player_);
-        commands_[CommandKey::GODMODE] = std::make_unique<GodModeCommand>(player_);
+        commands_[CommandKey::GOD_MODE] = std::make_unique<GodModeCommand>(player_);
     }
 
     void CommandInvoker::invoke(const CommandKey& key, const std::string& arguments) {

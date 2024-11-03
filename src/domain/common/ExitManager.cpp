@@ -4,6 +4,7 @@
 
 #include "Location.hpp"
 #include "Direction.hpp"
+#include "RandomEngine.hpp"
 
 namespace domain {
     ExitManager::ExitManager() : size_(0) {
@@ -45,5 +46,9 @@ namespace domain {
             std::strcat(directions, domain::to_string(exits_[i]->direction));
         }
         return directions;
+    }
+
+    Exit* ExitManager::get_random_exit() const {
+        return exits_[RandomEngine::get_instance().generate_random_number(0, size_ - 1)];
     }
 }

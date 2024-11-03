@@ -29,4 +29,8 @@ namespace game_objects {
     int EnemyObject::get_damage() const {
         return damage_;
     }
+
+    void EnemyObject::take_damage(int damage) {
+        health_ -= damage;
+    }
 }
