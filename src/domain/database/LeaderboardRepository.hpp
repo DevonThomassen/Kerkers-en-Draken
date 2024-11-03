@@ -2,16 +2,15 @@
 #define LEADERBOARDREPOSITORY_HPP
 
 #include "../common/Leaderboard.h"
-#include "IDatabase.hpp"
-#include "BaseRepository.hpp"
+#include "DatabaseRepository.hpp"
 
 using namespace domain;
 
-namespace repository {
+namespace database {
 
     /**
      * @class LeaderboardRepository
-     * @brief A class that represents a repository for leaderboards.
+     * @brief A class that represents a database for leaderboards.
      */
     class LeaderboardRepository final {
     public:

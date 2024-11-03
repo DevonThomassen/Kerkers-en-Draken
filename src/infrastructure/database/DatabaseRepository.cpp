@@ -1,4 +1,4 @@
-#include "../../domain/database/BaseRepository.hpp"
+#include "../../domain/database/DatabaseRepository.hpp"
 
 #include <sqlite3.h>
 #include <iostream>
@@ -7,7 +7,7 @@
 #include "../../domain/factories/EnemyFactory.h"
 #include "../../domain/factories/GameObjectFactory.h"
 
-namespace repository {
+namespace database {
 
     static sqlite3* db_ = nullptr;
 
@@ -16,7 +16,7 @@ namespace repository {
         static constexpr const auto ITEM_QUERY = "SELECT naam, omschrijving, type, minimumwaarde, maximumwaarde FROM Objecten WHERE naam = ?";
     }
 
-    int BaseRepository::open() {
+    int DatabaseRepository::open() {
         if (sqlite3_open(DEFAULT_DB_PATH, &db_) != SQLITE_OK) {
             sqlite3_close(db_);
             return -1;
@@ -24,7 +24,7 @@ namespace repository {
         return 0;
     }
 
-    game_objects::EnemyObject* BaseRepository::get_enemy(const char* name) {
+    game_objects::EnemyObject* DatabaseRepository::get_enemy(const char* name) {
         sqlite3_stmt* stmt = nullptr;
         if (sqlite3_prepare_v2(db_, constants::ENEMY_QUERY, -1, &stmt, nullptr) != SQLITE_OK) {
             std::cerr << sqlite3_errmsg(db_) << std::endl;
@@ -53,7 +53,7 @@ namespace repository {
         return nullptr;
     }
 
-    game_objects::GameObject* BaseRepository::get_item(const char* name) {
+    game_objects::GameObject* DatabaseRepository::get_item(const char* name) {
         sqlite3_stmt* stmt = nullptr;
         if (sqlite3_prepare_v2(db_, constants::ITEM_QUERY, -1, &stmt, nullptr) != SQLITE_OK) {
             std::cerr << sqlite3_errmsg(db_) << std::endl;
@@ -79,7 +79,7 @@ namespace repository {
         return nullptr;
     }
 
-    int BaseRepository::close() {
-        sqlite3_close(db_);
+    int DatabaseRepository::close() {
+        return sqlite3_close(db_);
     }
-}
+} // database;

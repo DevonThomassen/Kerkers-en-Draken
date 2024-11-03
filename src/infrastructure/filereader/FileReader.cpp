@@ -2,10 +2,11 @@
 #include "../lib/tinyxml2.h"
 #include <sstream>
 #include <iostream>
+
+#include "../../domain/database/DatabaseRepository.hpp"
 #include "../../domain/builder/DungeonBuilder.hpp"
 #include "../../domain/common/Direction.hpp"
 #include "../../domain/common/Location.hpp"
-#include "../../domain/database/EnemyRepository.hpp"
 
 namespace file_reader {
     /*
@@ -73,7 +74,7 @@ namespace file_reader {
             builder.add_location(id.value(), name, description);
         }
 
-        repository::BaseRepository::open();
+        database::DatabaseRepository::open();
         for (tinyxml2::XMLElement* location = root->FirstChildElement(constants::LOCATION);
              location != nullptr; location = location->NextSiblingElement(constants::LOCATION)) {
 
@@ -105,7 +106,7 @@ namespace file_reader {
                 std::stringstream ss(enemy);
                 std::string item;
                 while (std::getline(ss, item, ';')) {
-                    builder.bind_enemy_to_location(id.value(), repository::BaseRepository::get_enemy(item.c_str()));
+                    builder.bind_enemy_to_location(id.value(), database::DatabaseRepository::get_enemy(item.c_str()));
                 }
             }
             const char* invisible_objects = location->Attribute(constants::INVISIBLE_OBJECTS);
@@ -114,7 +115,7 @@ namespace file_reader {
                 std::string item;
                 while (std::getline(ss, item, ';')) {
                     builder.bind_game_object_to_location(id.value(),
-                                                         repository::BaseRepository::get_item(item.c_str()));
+                                                         database::DatabaseRepository::get_item(item.c_str()));
                 }
             }
             const char* visible_objects = location->Attribute(constants::VISIBLE_OBJECTS);
@@ -123,11 +124,10 @@ namespace file_reader {
                 std::string item;
                 while (std::getline(ss, item, ';')) {
                     builder.bind_game_object_to_location(id.value(),
-                                                         repository::BaseRepository::get_item(item.c_str()));
+                                                         database::DatabaseRepository::get_item(item.c_str()));
                 }
             }
         }
-
         return builder.get_locations();
     }
 } // file_reader

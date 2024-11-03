@@ -1,23 +1,22 @@
-#ifndef BASEREPOSITORY_HPP
-#define BASEREPOSITORY_HPP
+#ifndef DATABASEREPOSITORY_HPP
+#define DATABASEREPOSITORY_HPP
 
 #define DEFAULT_DB_PATH "/Users/devonthomassen/CLionProjects/kerkers-en-draken/resources/kerkersendraken.db"
 
 namespace game_objects {
     class EnemyObject;
-
     class GameObject;
 }
 
-namespace repository {
+namespace database {
     /**
-     * @class BaseRepository
+     * @class DatabaseRepository
      * @brief Base class for all repositories
      */
-    class BaseRepository {
+    class DatabaseRepository {
     public:
-        explicit BaseRepository() = delete;
-        virtual ~BaseRepository() = delete;
+        explicit DatabaseRepository() = delete;
+        virtual ~DatabaseRepository() = delete;
 
         [[nodiscard]] static game_objects::EnemyObject* get_enemy(const char* name);
         [[nodiscard]] static game_objects::GameObject* get_item(const char* name);
@@ -25,6 +24,6 @@ namespace repository {
         static int open();
         static int close();
     };
-}
+} // database
 
-#endif //BASEREPOSITORY_HPP
+#endif //DATABASEREPOSITORY_HPP

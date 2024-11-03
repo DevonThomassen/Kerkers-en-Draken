@@ -4,7 +4,7 @@
 
 using namespace domain;
 
-namespace repository {
+namespace database {
 
 //    const char* READ_LEADERBOARD_QUERY = "SELECT naam, goudstukken FROM leaderboard";
 
