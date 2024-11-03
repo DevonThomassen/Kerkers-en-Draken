@@ -5,9 +5,7 @@ CMakeLists.txt.user
 
 # Build directories
 cmake-build-debug/
-build/
-bin/`
-lib/
+bin/
 out/
 
 # Object files
