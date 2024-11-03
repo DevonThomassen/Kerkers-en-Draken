@@ -11,4 +11,7 @@ namespace game_objects {
     GoldObject& GoldObject::operator=(const GoldObject& other) = default;
     GoldObject& GoldObject::operator=(GoldObject&& other) noexcept = default;
 
+    int GoldObject::get_amount() const {
+        return amount_;
+    }
 }

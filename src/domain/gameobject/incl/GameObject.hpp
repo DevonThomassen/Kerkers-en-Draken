@@ -15,6 +15,18 @@ namespace game_objects {
         GameObject& operator=(GameObject&& other) noexcept;
         virtual ~GameObject() = default;
 
+        /**
+         * @brief Get the name of the game object.
+         * @return The name of the game object.
+         */
+        [[nodiscard]] const char* get_name() const;
+
+        /**
+         * @brief Get the description of the game object.
+         * @return The description of the game object.
+         */
+        [[nodiscard]] const char* get_description() const;
+
     private:
         const char* name_;
         const char* description_;

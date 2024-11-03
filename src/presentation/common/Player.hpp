@@ -35,6 +35,12 @@ namespace presentation {
         [[nodiscard]] int get_attack_chance() const;
         [[nodiscard]] int get_health() const;
         void add_object(std::unique_ptr<GameObject> object);
+        [[nodiscard]] const std::vector<std::unique_ptr<GameObject>>& get_objects() const;
+
+        [[nodiscard]] std::string get_weapon_name() const;
+        [[nodiscard]] std::string get_armour_name() const;
+        [[nodiscard]] int get_gold() const;
+        [[nodiscard]] std::string get_consumable_names() const;
 
     private:
         const std::string name_;

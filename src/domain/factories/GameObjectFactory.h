@@ -7,6 +7,12 @@ using namespace game_objects;
 
 namespace factories {
     /**
+     * @var object_count_
+     * @brief A static variable that represents the unique identifier for each game object.
+     */
+    static int object_count_ = 0;
+
+    /**
      * @struct GameObjectFactory
      * @brief A struct that represents a factory for creating game objects.
      */

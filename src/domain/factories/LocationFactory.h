@@ -6,10 +6,10 @@
 namespace factories {
 
     /**
-     * @namespace consts
+     * @namespace constants
      * @brief A namespace for constants used in the LocationFactory class.
      */
-    namespace consts {
+    namespace constants {
         static const int MIN_VISIBLE_OBJECTS = 0;
         static const int MAX_VISIBLE_OBJECTS = 3;
 
@@ -20,7 +20,7 @@ namespace factories {
         static const int MAX_EXISTS = 4;
 
         static const int ENEMY_PER_ROOM = 3;
-    } // consts
+    } // constants
     /**
      * @struct LocationFactory
      * @brief A factory class for creating Location objects.

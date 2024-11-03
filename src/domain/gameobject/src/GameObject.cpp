@@ -10,5 +10,13 @@ namespace game_objects {
     GameObject& GameObject::operator=(const GameObject& other) = default;
     GameObject& GameObject::operator=(GameObject&& other) noexcept = default;
 
-}
+    const char* GameObject::get_name() const {
+        return name_;
+    }
+
+    const char* GameObject::get_description() const {
+        return description_;
+    }
+
+} // game_objects
 

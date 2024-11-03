@@ -17,6 +17,8 @@ namespace game_objects {
         GoldObject& operator=(GoldObject&& other) noexcept;
         ~GoldObject() override = default;
 
+        [[nodiscard]] int get_amount() const;
+
     private:
         int amount_;
     };
