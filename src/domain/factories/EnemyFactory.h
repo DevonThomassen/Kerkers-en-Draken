@@ -28,8 +28,8 @@ namespace factories {
          */
         static EnemyObject*
         create(int health, int attack_chance, int damage, const char* name, const char* description) {
-            char full_name[256];
-            snprintf(full_name, sizeof(full_name), "%s %d", name, ++enemy_count_);
+            char* full_name = new char[strlen(name) + 12];
+            snprintf(full_name, strlen(name) + 12, "%s %d", name, ++enemy_count_);
             return new EnemyObject(health, attack_chance, damage, full_name, description);
         }
     };

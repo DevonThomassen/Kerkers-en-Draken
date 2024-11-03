@@ -15,7 +15,7 @@ namespace factories {
     factories::GameObjectFactory::create(const char* type, const char* name, const char* description, int value,
                                          bool invisible) {
         char* full_name = new char[strlen(name) + 12];
-        snprintf(full_name, strlen(name) + 12, "%s %d", name, object_count_++);
+        snprintf(full_name, strlen(name) + 12, "%s %d", name, ++object_count_);
         const auto type_enum = common::convert_to_game_object_type(type);
         switch (type_enum) {
             case common::GameObjectType::ARMOUR:

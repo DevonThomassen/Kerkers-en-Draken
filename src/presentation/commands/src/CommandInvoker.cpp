@@ -12,6 +12,7 @@
 #include "commands/incl/GoCommand.hpp"
 #include "commands/incl/StartCommand.hpp"
 #include "commands/incl/TakeCommand.hpp"
+#include "commands/incl/LookRoomCommand.hpp"
 
 namespace presentation::commands {
 
@@ -21,7 +22,7 @@ namespace presentation::commands {
               gameService_(gameService) {
         commands_[CommandKey::START] = std::make_unique<StartCommand>(gameService_);
         commands_[CommandKey::ATTACK] = std::make_unique<AttackCommand>();
-        commands_[CommandKey::LOOK] = std::make_unique<CheckRoomCommand>(gameService_);
+        commands_[CommandKey::LOOK] = std::make_unique<LookRoomCommand>(gameService_, player_);
         commands_[CommandKey::EXIT] = std::make_unique<ExitCommand>(gameService_);
         commands_[CommandKey::UNKNOWN] = std::make_unique<UnknownCommand>();
         commands_[CommandKey::HELP] = std::make_unique<HelpCommand>();

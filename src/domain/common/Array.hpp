@@ -122,7 +122,7 @@ namespace domain {
          * @brief Returns the data of the array.
          * @return The data of the array.
          */
-        [[nodiscard]] const T** data() const {
+        [[nodiscard]] T** data() const {
             return data_;
         }
 

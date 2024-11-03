@@ -58,7 +58,7 @@ namespace domain {
         int add_object(game_objects::GameObject* game_object);
         game_objects::GameObject* take_object(const char* name);
 
-        game_objects::GameObject** get_visible_objects() const;
+        [[nodiscard]] const Array<game_objects::GameObject>& get_objects() const;
 
     private:
         int id_;

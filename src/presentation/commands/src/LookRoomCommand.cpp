@@ -3,7 +3,7 @@
 #include "../application/GameService.hpp"
 #include "common/Console.hpp"
 #include "../domain/common/Location.hpp"
-
+#include "gameobject/incl/EnemyObject.hpp"
 
 namespace presentation::commands {
 
@@ -13,9 +13,21 @@ namespace presentation::commands {
               player_(player) {}
 
     void LookRoomCommand::execute() {
+        const auto& location = game_service_->get_current_location();
         console::print(std::format("Mogelijke richting(en): {} \n",
-                                   std::string(game_service_->get_current_location().get_possible_directions())));
+                                   std::string(location.get_possible_directions())));
 
+        const auto& array = location.get_objects();
+        for (int i = 0; i < array.size(); i++) {
+            auto object = array[i];
+            if (!object->is_invisible()) {
+                if (const auto enemy = dynamic_cast<game_objects::EnemyObject*>(object)) {
+                    console::print(std::format("Vijand: {}\n", object->get_name()));
+                } else {
+                    console::print(std::format("Zichtbare object: {}\n", object->get_name()));
+                }
+            }
+        }
     }
 
 } // presentation::commands

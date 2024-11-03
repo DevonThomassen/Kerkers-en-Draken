@@ -11,7 +11,7 @@ presentation::commands::GoCommand::GoCommand(std::shared_ptr<GameService> game_s
 void presentation::commands::GoCommand::execute() {
     console::print(std::format("Mogelijke richting(en): {} \n",
                                std::string(game_service_->get_current_location().get_possible_directions())));
-    console::print("Waar wil je naar toe?");
+    console::print("Waar wil je naar toe? ");
     const auto direction = console::get_input();
     if (direction == "noord") {
         game_service_->go_to_next_location(domain::Direction::North);
