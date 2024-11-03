@@ -10,7 +10,7 @@ namespace repository {
      * @class EnemyRepository
      * @brief Repository for enemy data
      */
-    class EnemyRepository final : public BaseRepository {
+    class EnemyRepository final {
     public:
         explicit EnemyRepository();
         game_objects::EnemyObject* get_enemy(int id);

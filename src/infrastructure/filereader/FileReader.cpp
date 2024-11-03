@@ -70,7 +70,8 @@ namespace file_reader {
             builder.add_location(id.value(), name, description);
         }
 
-        repository::EnemyRepository enemyRepository;
+        repository::BaseRepository baseRepository;
+        baseRepository.open();
         for (tinyxml2::XMLElement* location = root->FirstChildElement(constants::LOCATION);
              location != nullptr; location = location->NextSiblingElement(constants::LOCATION)) {
 
@@ -102,7 +103,7 @@ namespace file_reader {
                 std::stringstream ss(enemy);
                 std::string item;
                 while (std::getline(ss, item, ';')) {
-                    builder.bind_enemy_to_location(id.value(), enemyRepository.get_enemy(item.c_str()));
+                    builder.bind_enemy_to_location(id.value(), baseRepository.get_enemy(item.c_str()));
                 }
             }
             const char* objectenverborgen = location->Attribute("objectenverborgen");

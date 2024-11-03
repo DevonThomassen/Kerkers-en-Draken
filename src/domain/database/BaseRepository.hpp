@@ -1,12 +1,14 @@
 #ifndef BASEREPOSITORY_HPP
 #define BASEREPOSITORY_HPP
 
-#include <sqlite3.h>
-
 #define DEFAULT_DB_PATH "/Users/devonthomassen/CLionProjects/kerkers-en-draken/resources/kerkersendraken.db"
 
-namespace repository {
+namespace game_objects {
+    class EnemyObject;
+    class GameObject;
+}
 
+namespace repository {
     /**
      * @class BaseRepository
      * @brief Base class for all repositories
@@ -16,12 +18,11 @@ namespace repository {
         explicit BaseRepository();
         virtual ~BaseRepository();
 
-    protected:
-        sqlite3* db_;
+        [[nodiscard]] game_objects::EnemyObject* get_enemy(const char* name);
+        [[nodiscard]] game_objects::GameObject* get_item(const char* name);
 
-    public:
-        [[nodiscard]] int open();
-        [[nodiscard]] int close() const;
+        static int open();
+//        [[maybe_unused]] static int close();
     };
 }
 

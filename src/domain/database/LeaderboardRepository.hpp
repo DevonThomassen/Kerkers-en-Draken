@@ -13,7 +13,7 @@ namespace repository {
      * @class LeaderboardRepository
      * @brief A class that represents a repository for leaderboards.
      */
-    class LeaderboardRepository final : private BaseRepository {
+    class LeaderboardRepository final {
     public:
         explicit LeaderboardRepository();
         int create_row(const char* name, const int gold_amount) const;
