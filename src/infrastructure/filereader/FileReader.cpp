@@ -15,6 +15,9 @@ namespace file_reader {
         static constexpr const auto ID = "id";
         static constexpr const auto LOCATION = "locatie";
         static constexpr const auto DESCRIPTION = "beschrijving";
+        static constexpr const auto ENEMY = "vijand";
+        static constexpr const auto INVISIBLE_OBJECTS = "objectenverborgen";
+        static constexpr const auto VISIBLE_OBJECTS = "objectenzichtbaar";
 
         static constexpr const auto NORTH = "noord";
         static constexpr const auto EAST = "oost";
@@ -70,8 +73,7 @@ namespace file_reader {
             builder.add_location(id.value(), name, description);
         }
 
-        repository::BaseRepository baseRepository;
-        baseRepository.open();
+        repository::BaseRepository::open();
         for (tinyxml2::XMLElement* location = root->FirstChildElement(constants::LOCATION);
              location != nullptr; location = location->NextSiblingElement(constants::LOCATION)) {
 
@@ -98,16 +100,32 @@ namespace file_reader {
                 }
             }
 
-            const char* enemy = location->Attribute("vijand");
-            if (enemy != nullptr) {
+            const char* enemy = location->Attribute(constants::ENEMY);
+            if (enemy) {
                 std::stringstream ss(enemy);
                 std::string item;
                 while (std::getline(ss, item, ';')) {
-                    builder.bind_enemy_to_location(id.value(), baseRepository.get_enemy(item.c_str()));
+                    builder.bind_enemy_to_location(id.value(), repository::BaseRepository::get_enemy(item.c_str()));
                 }
             }
-            const char* objectenverborgen = location->Attribute("objectenverborgen");
-            const char* objectenzichtbaar = location->Attribute("objectenzichtbaar");
+            const char* invisible_objects = location->Attribute(constants::INVISIBLE_OBJECTS);
+            if (invisible_objects) {
+                std::stringstream ss(invisible_objects);
+                std::string item;
+                while (std::getline(ss, item, ';')) {
+                    builder.bind_game_object_to_location(id.value(),
+                                                         repository::BaseRepository::get_item(item.c_str()));
+                }
+            }
+            const char* visible_objects = location->Attribute(constants::VISIBLE_OBJECTS);
+            if (visible_objects) {
+                std::stringstream ss(visible_objects);
+                std::string item;
+                while (std::getline(ss, item, ';')) {
+                    builder.bind_game_object_to_location(id.value(),
+                                                         repository::BaseRepository::get_item(item.c_str()));
+                }
+            }
         }
 
         return builder.get_locations();

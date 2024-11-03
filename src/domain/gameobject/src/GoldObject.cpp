@@ -2,7 +2,7 @@
 
 namespace game_objects {
 
-    GoldObject::GoldObject(const int amount, const char* name, const char* description)
+    GoldObject::GoldObject(const char* name, const char* description, const int amount)
             : amount_(amount),
               GameObject(name, description) {}
 

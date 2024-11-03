@@ -3,12 +3,10 @@
 
 #include <iostream>
 
-//#include "common/Array.hpp"
-#include "gameobject/incl/ArmourObject.hpp"
-#include "gameobject/incl/GoldObject.hpp"
-#include "gameobject/incl/WeaponObject.hpp"
+namespace game_objects {
+    class GameObject;
+}
 
-//using namespace domain;
 using namespace game_objects;
 
 namespace presentation {
@@ -28,7 +26,7 @@ namespace presentation {
          * @brief Construct a new Player object
          * @param name The name of the player
          */
-        explicit Player(std::string  name);
+        explicit Player(std::string name);
         ~Player();
 
         void take_damage(int amount);
@@ -36,15 +34,13 @@ namespace presentation {
         [[nodiscard]] std::string get_name() const;
         [[nodiscard]] int get_attack_chance() const;
         [[nodiscard]] int get_health() const;
+        void add_object(std::unique_ptr<GameObject> object);
 
     private:
         const std::string name_;
         int health_;
         static const int attack_chance_ = 40;
-        std::unique_ptr<GameObject> objects_;
-//        Array<WeaponObject> weapons_;
-//        Array<ArmourObject> armour_objects_;
-//        Array<GoldObject> gold_amount_;
+        std::vector<std::unique_ptr<GameObject>> objects_;
     };
 }
 

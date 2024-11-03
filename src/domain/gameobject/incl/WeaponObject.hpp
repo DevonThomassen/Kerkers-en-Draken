@@ -10,12 +10,15 @@ namespace game_objects {
      */
     class WeaponObject final : public GameObject {
     public:
-        explicit WeaponObject(const char* name, const char* description);
+        explicit WeaponObject(const char* name, const char* description, int damage);
         WeaponObject(const WeaponObject& other);
         WeaponObject(WeaponObject&& other) noexcept;
         WeaponObject& operator=(const WeaponObject& other);
         WeaponObject& operator=(WeaponObject&& other) noexcept;
         ~WeaponObject() override;
+
+    private:
+        int damage_;
     };
 }
 

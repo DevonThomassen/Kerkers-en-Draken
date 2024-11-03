@@ -10,7 +10,7 @@ namespace game_objects {
      */
     class EnemyObject final : public GameObject {
     public:
-        explicit EnemyObject(int health, const char* name, const char* description);
+        explicit EnemyObject(int health, int attack_chance, int damage, const char* name, const char* description);
         EnemyObject(const EnemyObject& other);
         EnemyObject(EnemyObject&& other) noexcept;
         EnemyObject& operator=(const EnemyObject& other);
@@ -19,6 +19,8 @@ namespace game_objects {
 
     private:
         int health_;
+        int attack_chance_;
+        int damage_;
     };
 }
 

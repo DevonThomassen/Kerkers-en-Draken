@@ -1,9 +1,11 @@
 #include "../../domain/database/BaseRepository.hpp"
 
-#include "../../domain/gameobject/incl/EnemyObject.hpp"
-
 #include <sqlite3.h>
 #include <iostream>
+
+#include "../../domain/common/RandomEngine.hpp"
+#include "../../domain/factories/EnemyFactory.h"
+#include "../../domain/factories/GameObjectFactory.h"
 
 namespace repository {
 
@@ -14,14 +16,6 @@ namespace repository {
         static constexpr const auto ITEM_QUERY = "SELECT naam, omschrijving, type, minimumwaarde, maximumwaarde FROM Objecten WHERE naam = ?";
     }
 
-    BaseRepository::BaseRepository() {
-
-    }
-
-    BaseRepository::~BaseRepository() {
-        sqlite3_close(db_);
-    }
-
     int BaseRepository::open() {
         if (sqlite3_open(DEFAULT_DB_PATH, &db_) != SQLITE_OK) {
             sqlite3_close(db_);
@@ -30,10 +24,6 @@ namespace repository {
         return 0;
     }
 
-//    int BaseRepository::close() {
-//        return sqlite3_close(db_);
-//    }
-
     game_objects::EnemyObject* BaseRepository::get_enemy(const char* name) {
         sqlite3_stmt* stmt = nullptr;
         if (sqlite3_prepare_v2(db_, constants::ENEMY_QUERY, -1, &stmt, nullptr) != SQLITE_OK) {
@@ -41,25 +31,55 @@ namespace repository {
             return nullptr;
         }
         if (sqlite3_bind_text(stmt, 1, name, -1, SQLITE_STATIC) != SQLITE_OK) {
+            std::cerr << sqlite3_errmsg(db_) << std::endl;
             return nullptr;
         }
 
+        auto& randomEngine = RandomEngine::get_instance();
         while (sqlite3_step(stmt) == SQLITE_ROW) {
-            const auto name = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0));
+            const auto name_string = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0));
             const auto description = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
-            const auto min_obj = sqlite3_column_int(stmt, 2);
-            const auto max_obj = sqlite3_column_int(stmt, 3);
+//            const auto min_obj = sqlite3_column_int(stmt, 2);
+//            const auto max_obj = sqlite3_column_int(stmt, 3);
             const auto health = sqlite3_column_int(stmt, 4);
             const auto attack_chance = sqlite3_column_int(stmt, 5);
             const auto min_damage = sqlite3_column_int(stmt, 6);
             const auto max_damage = sqlite3_column_int(stmt, 7);
 
-            return new game_objects::EnemyObject(health, name, description);
+            const auto random_damage = randomEngine.generate_random_number(min_damage, max_damage);
+
+            return factories::EnemyFactory::create(health, attack_chance, random_damage, name_string, description);
         }
         return nullptr;
     }
 
     game_objects::GameObject* BaseRepository::get_item(const char* name) {
+        sqlite3_stmt* stmt = nullptr;
+        if (sqlite3_prepare_v2(db_, constants::ITEM_QUERY, -1, &stmt, nullptr) != SQLITE_OK) {
+            std::cerr << sqlite3_errmsg(db_) << std::endl;
+            return nullptr;
+        }
+        if (sqlite3_bind_text(stmt, 1, name, -1, SQLITE_STATIC) != SQLITE_OK) {
+            std::cerr << sqlite3_errmsg(db_) << std::endl;
+            return nullptr;
+        }
+
+        auto& randomEngine = RandomEngine::get_instance();
+        while (sqlite3_step(stmt) == SQLITE_ROW) {
+            const auto name_string = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0));
+            const auto description = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
+            const auto type_name = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));
+            const auto min_value = sqlite3_column_int(stmt, 3);
+            const auto max_value = sqlite3_column_int(stmt, 4);
+
+            const auto r_value = randomEngine.generate_random_number(min_value, max_value);
+
+            return factories::GameObjectFactory::create(type_name, name_string, description, r_value);
+        }
         return nullptr;
+    }
+
+    int BaseRepository::close() {
+        sqlite3_close(db_);
     }
 }

@@ -10,12 +10,15 @@ namespace game_objects {
      */
     class ConsumableObject final : public GameObject {
     public:
-        explicit ConsumableObject(const char* name, const char* description);
+        explicit ConsumableObject(const char* name, const char* description, int value);
         ConsumableObject(const ConsumableObject& other);
         ConsumableObject(ConsumableObject&& other) noexcept;
         ConsumableObject& operator=(const ConsumableObject& other);
         ConsumableObject& operator=(ConsumableObject&& other) noexcept;
         ~ConsumableObject() override = default;
+
+    private:
+        int value_;
     };
 }
 

@@ -5,6 +5,7 @@
 
 namespace game_objects {
     class EnemyObject;
+
     class GameObject;
 }
 
@@ -15,14 +16,14 @@ namespace repository {
      */
     class BaseRepository {
     public:
-        explicit BaseRepository();
-        virtual ~BaseRepository();
+        explicit BaseRepository() = delete;
+        virtual ~BaseRepository() = delete;
 
-        [[nodiscard]] game_objects::EnemyObject* get_enemy(const char* name);
-        [[nodiscard]] game_objects::GameObject* get_item(const char* name);
+        [[nodiscard]] static game_objects::EnemyObject* get_enemy(const char* name);
+        [[nodiscard]] static game_objects::GameObject* get_item(const char* name);
 
         static int open();
-//        [[maybe_unused]] static int close();
+        static int close();
     };
 }
 

@@ -5,6 +5,7 @@
 
 namespace game_objects {
     class EnemyObject;
+    class GameObject;
 }
 
 namespace domain {
@@ -39,6 +40,8 @@ namespace builder {
         int bind_locations(int src, int dest, Direction direction);
 
         void bind_enemy_to_location(int location_id, game_objects::EnemyObject* enemy);
+
+        void bind_game_object_to_location(int location_id, game_objects::GameObject* game_object);
 
         /**
          * @brief Gets the locations of the dungeon

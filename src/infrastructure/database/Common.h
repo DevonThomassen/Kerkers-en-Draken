@@ -1,6 +1,8 @@
 #ifndef COMMON_H
 #define COMMON_H
 
+#include <cstring>
+
 namespace common {
 
     /**
@@ -15,6 +17,24 @@ namespace common {
         WEAPON = 4,
         ENEMY = 5
     };
+
+    GameObjectType static convert_to_game_object_type(const char* type) {
+        if (strcmp(type, "wapenrusting") == 0) {
+            return GameObjectType::ARMOUR;
+        }
+        if (strcmp(type, "levenselixer") == 0
+            or strcmp(type, "ervaringsdrank") == 0
+            or strcmp(type, "teleportatiedrank") == 0) {
+            return GameObjectType::CONSUMABLE;
+        }
+        if (strcmp(type, "wapen") == 0) {
+            return GameObjectType::WEAPON;
+        }
+        if (strcmp(type, "goudstukken") == 0) {
+            return GameObjectType::GOLD;
+        }
+        return GameObjectType::BASE;
+    }
 
 }
 

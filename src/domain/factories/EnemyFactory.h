@@ -18,8 +18,9 @@ namespace factories {
          * @param description The description of the enemy.
          * @return An EnemyObject with the given name and description.
          */
-        static EnemyObject* create(int health, const char* name, const char* description) {
-            return new EnemyObject(health, name, description);
+        static EnemyObject*
+        create(int health, int attack_chance, int damage, const char* name, const char* description) {
+            return new EnemyObject(health, attack_chance, damage, name, description);
         }
     };
 } // factories
