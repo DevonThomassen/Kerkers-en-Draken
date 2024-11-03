@@ -93,18 +93,22 @@ namespace domain {
          * @param index The index of the element to access.
          * @return The element at the specified index.
          */
-        T* operator[](const int index) {
+        T* operator[](const int index) const{
             return data_[index];
         }
+
+//        T* get(const int index) const{
+//            return data_[index];
+//        }
 
         /**
          * @brief Overloaded subscript operator.
          * @param index The index of the element to access.
          * @return The element at the specified index.
          */
-        const T& operator[](const int index) const {
-            return data_[index];
-        }
+//        const T& operator[](const int index) const {
+//            return data_[index];
+//        }
 
         /**
          * @brief Returns the size of the array.
@@ -154,6 +158,19 @@ namespace domain {
             if (size_ > 0) {
                 data_[size_--] = nullptr;
             }
+        }
+
+        /**
+         * @brief Removes all elements from the array.
+         */
+        bool remove_at_index(int index) {
+            if (index < 0 || index >= size_) {
+                return false;
+            }
+            data_[index] = data_[size_ - 1];
+            --size_;
+            data_[size_] = nullptr;
+            return true;
         }
 
     private:

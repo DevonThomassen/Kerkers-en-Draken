@@ -11,10 +11,11 @@
 #include "commands/incl/SelfCommand.hpp"
 #include "commands/incl/GoCommand.hpp"
 #include "commands/incl/StartCommand.hpp"
+#include "commands/incl/TakeCommand.hpp"
 
 namespace presentation::commands {
 
-    CommandInvoker::CommandInvoker(const std::unique_ptr<Player>& player,
+    CommandInvoker::CommandInvoker(std::unique_ptr<Player>& player,
                                    const std::shared_ptr<application::GameService>& gameService)
             : player_(player),
               gameService_(gameService) {
@@ -26,6 +27,7 @@ namespace presentation::commands {
         commands_[CommandKey::HELP] = std::make_unique<HelpCommand>();
         commands_[CommandKey::SELF] = std::make_unique<SelfCommand>(player_);
         commands_[CommandKey::GO] = std::make_unique<GoCommand>(gameService_);
+        commands_[CommandKey::TAKE] = std::make_unique<TakeCommand>(gameService_, player_);
     }
 
     void CommandInvoker::invoke(const CommandKey& key) {

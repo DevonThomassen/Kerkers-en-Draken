@@ -1,5 +1,7 @@
 #include "Location.hpp"
 
+#include <cstring>
+
 #include "../gameobject/incl/GameObject.hpp"
 #include "../gameobject/incl/EnemyObject.hpp"
 #include "../../domain/common/Direction.hpp"
@@ -99,5 +101,25 @@ namespace domain {
 
     const char* Location::get_possible_directions() const {
         return exits_.get_possible_directions();
+    }
+
+    game_objects::GameObject* Location::take_object(const char* name) {
+        for (auto i = 0; i < objects_.size(); ++i) {
+            auto n = objects_[i];
+            if (strcmp(objects_[i]->get_name(), name) == 0) {
+                auto* game_object = objects_[i];
+                objects_.remove_at_index(i);
+                return game_object;
+            }
+        }
+        return nullptr;
+    }
+
+    game_objects::GameObject** Location::get_visible_objects() const {
+        auto** visible_objects = new game_objects::GameObject*[objects_.size()];
+        for (auto i = 0; i < objects_.size(); ++i) {
+            visible_objects[i] = objects_[i];
+        }
+        return visible_objects;
     }
 } // domain

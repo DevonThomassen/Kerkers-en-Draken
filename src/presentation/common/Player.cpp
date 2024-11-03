@@ -86,4 +86,8 @@ namespace presentation {
         }
         return string;
     }
+
+    void Player::add_object(GameObject* game_object) {
+        objects_.push_back(std::unique_ptr<GameObject>(game_object));
+    }
 } // presentation

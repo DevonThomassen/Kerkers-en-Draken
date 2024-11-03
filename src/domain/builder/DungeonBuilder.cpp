@@ -56,7 +56,7 @@ namespace builder {
     }
 
     void DungeonBuilder::bind_game_object_to_location(int location_id, game_objects::GameObject* game_object) {
-        auto* location = find_location_by_id(location_id);
+        auto location = find_location_by_id(location_id);
         if (location != nullptr) {
             location->add_object(game_object);
         }
@@ -64,7 +64,7 @@ namespace builder {
 
     Location* DungeonBuilder::find_location_by_id(int id) const {
         for (auto i = 0; i < locations_->size(); ++i) {
-            auto* location = (*locations_)[i];
+            auto location = (*locations_)[i];
             if (location->id() == id) {
                 return location;
             }

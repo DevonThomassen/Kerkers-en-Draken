@@ -5,7 +5,7 @@
 
 namespace application {
     class GameService;
-}
+} // application
 
 using namespace application;
 
@@ -22,6 +22,6 @@ namespace presentation::commands {
     private:
         std::shared_ptr<GameService> game_service_;
     };
-}
+} // presentation::commands
 
 #endif //CHECKROOMCOMMAND_HPP

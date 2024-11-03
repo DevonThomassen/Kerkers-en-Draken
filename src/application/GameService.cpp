@@ -2,6 +2,7 @@
 #include "../domain/filereader/FileReader.h"
 #include "../domain/common/Location.hpp"
 #include "../domain/common/Direction.hpp"
+#include "../domain/gameobject/incl/GameObject.hpp"
 
 namespace application {
 
@@ -22,7 +23,6 @@ namespace application {
 
     int GameService::start(const char* file_path) {
         locations_ = file_reader::read_file(file_path);
-        auto test = (*locations_)[1];
         quit_ = false;
         return 0;
     }

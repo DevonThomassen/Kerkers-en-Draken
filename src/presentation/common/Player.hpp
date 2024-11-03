@@ -42,6 +42,8 @@ namespace presentation {
         [[nodiscard]] int get_gold() const;
         [[nodiscard]] std::string get_consumable_names() const;
 
+        void add_object(GameObject* game_object);
+
     private:
         const std::string name_;
         int health_;

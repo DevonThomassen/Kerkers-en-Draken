@@ -13,8 +13,8 @@ namespace factories {
 
     GameObject*
     factories::GameObjectFactory::create(const char* type, const char* name, const char* description, int value) {
-        char full_name[256];
-        snprintf(full_name, sizeof(full_name), "%s %d", name, ++object_count_);
+        char* full_name = new char[strlen(name) + 12];
+        snprintf(full_name, strlen(name) + 12, "%s %d", name, object_count_++);
         const auto type_enum = common::convert_to_game_object_type(type);
         switch (type_enum) {
             case common::GameObjectType::ARMOUR:
@@ -27,6 +27,7 @@ namespace factories {
                 return new game_objects::GoldObject(full_name, description, value);
             case common::GameObjectType::BASE:
             default:
+                delete[] full_name;
                 return nullptr;
         }
     }
