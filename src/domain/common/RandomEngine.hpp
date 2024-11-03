@@ -2,6 +2,7 @@
 #define RANDOMENGINE_HPP
 
 #include <random>
+#include <optional>
 
 /**
  * @class RandomEngine

@@ -36,6 +36,7 @@ namespace domain {
             case Direction::East:
                 return Direction::West;
             case Direction::West:
+            default:
                 return Direction::East;
         }
     }
@@ -54,6 +55,7 @@ namespace domain {
             case Direction::East:
                 return constants::EAST_STR;
             case Direction::West:
+            default:
                 return constants::WEST_STR;
         }
     }
