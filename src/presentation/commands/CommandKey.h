@@ -18,7 +18,9 @@ namespace presentation::commands {
         SEARCH,
         TAKE,
         ATTACK,
-        EXIT
+        EXIT,
+        SELF,
+        GO
     };
 
     struct CommandKeyAndArguments {

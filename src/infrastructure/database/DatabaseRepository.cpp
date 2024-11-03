@@ -2,6 +2,7 @@
 
 #include <sqlite3.h>
 #include <iostream>
+#include <cstring>
 
 #include "../../domain/common/RandomEngine.hpp"
 #include "../../domain/factories/EnemyFactory.h"
@@ -13,7 +14,8 @@ namespace database {
 
     namespace constants {
         static constexpr const auto ENEMY_QUERY = "SELECT naam, omschrijving, minimumobjecten, maximumobjecten, levenspunten, aanvalskans, minimumschade, maximumschade FROM Vijanden WHERE naam = ?";
-        static constexpr const auto ITEM_QUERY = "SELECT naam, omschrijving, type, minimumwaarde, maximumwaarde FROM Objecten WHERE naam = ?";
+        static constexpr const auto ITEM_QUERY = "SELECT naam, omschrijving, type, minimumwaarde, maximumwaarde, bescherming FROM Objecten WHERE naam = ?";
+        static constexpr const auto ARMOUR  = "wapenuitrusting";
     }
 
     int DatabaseRepository::open() {
@@ -69,9 +71,14 @@ namespace database {
             const auto name_string = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0));
             const auto description = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
             const auto type_name = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));
+
+            if (strcmp(type_name, constants::ARMOUR) == 0) {
+                const auto protection = sqlite3_column_int(stmt, 5);
+                return factories::GameObjectFactory::create(type_name, name_string, description, protection);
+            }
+
             const auto min_value = sqlite3_column_int(stmt, 3);
             const auto max_value = sqlite3_column_int(stmt, 4);
-
             const auto r_value = randomEngine.generate_random_number(min_value, max_value);
 
             return factories::GameObjectFactory::create(type_name, name_string, description, r_value);

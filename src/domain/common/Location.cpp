@@ -66,7 +66,7 @@ namespace domain {
     }
 
     const char* Location::simple_description() const {
-        return "TODO: This should be a simple description of the location.";
+        return description_;
     }
 
     const char* Location::complete_description() const {

@@ -34,6 +34,11 @@ namespace presentation::console {
         if (command == "look") {
             return CommandKey::LOOK;
         }
+        if (command == "zelf") {
+            return CommandKey::SELF;
+        } if (command == "ga") {
+            return CommandKey::GO;
+        }
         return CommandKey::UNKNOWN;
     }
 

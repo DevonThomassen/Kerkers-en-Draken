@@ -7,13 +7,13 @@
 
 namespace presentation::commands {
 
-    class SelfCommand final : ICommand {
+    class SelfCommand final : public ICommand {
     public:
-        explicit SelfCommand(std::unique_ptr<Player>& player);
+        explicit SelfCommand(const std::unique_ptr<Player>& player);
         void execute() override;
 
     private:
-        std::unique_ptr<Player>& player_;
+        const std::unique_ptr<Player>& player_;
     };
 
 } // presentation::commands

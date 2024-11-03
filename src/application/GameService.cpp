@@ -6,7 +6,8 @@ namespace application {
 
     GameService::GameService()
             : quit_(true),
-              locations_(nullptr) {}
+              locations_(nullptr),
+              current_location_index_(0) {}
 
     GameService::~GameService() {
         delete locations_;
@@ -31,5 +32,9 @@ namespace application {
 
     bool GameService::is_running() const {
         return !quit_;
+    }
+
+    Location& GameService::get_current_location() const {
+        return *((*locations_)[current_location_index_]);
     }
 }

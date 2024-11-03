@@ -4,6 +4,7 @@
 #include "../incl/AttackCommand.hpp"
 #include "../incl/CheckRoomCommand.hpp"
 #include "../incl/ExitCommand.hpp"
+#include "../incl/SelfCommand.hpp"
 #include "commands/incl/StartCommand.hpp"
 
 namespace presentation::commands {
@@ -18,6 +19,7 @@ namespace presentation::commands {
         commands_[CommandKey::EXIT] = std::make_unique<ExitCommand>(gameService_);
         commands_[CommandKey::UNKNOWN] = std::make_unique<UnknownCommand>();
         commands_[CommandKey::HELP] = std::make_unique<HelpCommand>();
+        commands_[CommandKey::SELF] = std::make_unique<SelfCommand>(player_);
     }
 
     void CommandInvoker::invoke(const CommandKey& key) {

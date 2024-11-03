@@ -50,9 +50,12 @@ namespace application {
             void exit();
 
             [[nodiscard]] bool is_running() const;
+
+            [[nodiscard]] Location& get_current_location() const;
         private:
             bool quit_;
             Array<Location>* locations_;
+            int current_location_index_;
         };
 }
 

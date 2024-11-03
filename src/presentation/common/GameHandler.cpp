@@ -1,4 +1,5 @@
 #include "common/GameHandler.hpp"
+#include "../domain/common/Location.hpp"
 
 const auto print = [](const std::string& str) {
     presentation::console::print(str);
@@ -21,6 +22,10 @@ namespace presentation {
         set_player();
         invoker_ = std::make_unique<CommandInvoker>(player_, gameService_);
 
+        console::print("Het spel begint!\n");
+        const auto& start_location = gameService_->get_current_location();
+        console::print(start_location.name());
+        console::print(start_location.simple_description());
         gameService_->main_loop([&]() {
             this->iterate();
         });
