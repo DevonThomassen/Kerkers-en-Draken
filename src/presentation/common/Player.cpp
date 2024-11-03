@@ -18,6 +18,7 @@ namespace presentation {
             : name_(std::move(name)),
               health_(START_HEALTH),
               attack_chance_(40),
+              god_mode_(false),
               weapon_(),
               armour_(),
               objects_() {}
@@ -150,4 +151,13 @@ namespace presentation {
         }
         return false;
     }
+
+    void Player::toggle_god_mode() {
+        god_mode_ = !god_mode_;
+    }
+
+    bool Player::is_god_mode() const {
+        return god_mode_;
+    }
+
 } // presentation

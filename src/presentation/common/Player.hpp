@@ -51,10 +51,14 @@ namespace presentation {
         bool equip_in_hand(const std::string& name);
         int consume(ConsumableObject* consumable);
 
+        void toggle_god_mode();
+        [[nodiscard]] bool is_god_mode() const;
+
     private:
         const std::string name_;
         int health_;
         int attack_chance_;
+        bool god_mode_;
         std::unique_ptr<GameObject> weapon_;
         std::unique_ptr<GameObject> armour_;
         std::vector<std::unique_ptr<GameObject>> objects_;

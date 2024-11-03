@@ -19,7 +19,7 @@ namespace presentation::console {
         const auto words = splits(input);
         if (words.empty()) {
             return {
-                    .key = CommandKey::UNKNOWN
+                    CommandKey::UNKNOWN
             };
         }
 
@@ -87,6 +87,11 @@ namespace presentation::console {
             return {
                     CommandKey::HAND,
                     arguments
+            };
+        }
+        if (command == "godmode") {
+            return {
+                    CommandKey::GODMODE
             };
         }
         return {

@@ -23,7 +23,8 @@ namespace presentation::commands {
         PUT,
         CONSUME,
         WAIT,
-        HAND
+        HAND,
+        GODMODE
     };
 
     /**
