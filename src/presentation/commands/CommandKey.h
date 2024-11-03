@@ -19,11 +19,17 @@ namespace presentation::commands {
         TAKE,
         ATTACK,
         EXIT,
-        SELF,
         GO,
-        PUT
+        PUT,
+        CONSUME,
+        WAIT,
+        HAND
     };
 
+    /**
+     * @struct CommandKeyAndArguments
+     * @brief Struct for command key and arguments
+     */
     struct CommandKeyAndArguments {
         CommandKey key;
         std::string arguments;

@@ -124,6 +124,11 @@ namespace domain {
 
     void Location::search_room() {
         for (auto i = 0; i < objects_.size(); ++i) {
+            if (dynamic_cast<game_objects::EnemyObject*>(objects_[i]) != nullptr) {
+                return;
+            }
+        }
+        for (auto i = 0; i < objects_.size(); ++i) {
             if (objects_[i]->is_invisible()) {
                 objects_[i]->set_invisible(false);
             }

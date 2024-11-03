@@ -19,13 +19,13 @@ namespace factories {
         const auto type_enum = common::convert_to_game_object_type(type);
         switch (type_enum) {
             case common::GameObjectType::ARMOUR:
-                return new game_objects::ArmourObject(full_name, description, value);
+                return new game_objects::ArmourObject(full_name, description, value, invisible);
             case common::GameObjectType::WEAPON:
-                return new game_objects::WeaponObject(full_name, description, value);
+                return new game_objects::WeaponObject(full_name, description, value, invisible);
             case common::GameObjectType::CONSUMABLE:
-                return new game_objects::ConsumableObject(full_name, description, value, invisible);
+                return new game_objects::ConsumableObject(full_name, description, value, type, invisible);
             case common::GameObjectType::GOLD:
-                return new game_objects::GoldObject(full_name, description, value);
+                return new game_objects::GoldObject(full_name, description, value, invisible);
             case common::GameObjectType::BASE:
             default:
                 delete[] full_name;

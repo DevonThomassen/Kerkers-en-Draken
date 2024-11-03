@@ -17,6 +17,10 @@ namespace game_objects {
         EnemyObject& operator=(EnemyObject&& other) noexcept;
         ~EnemyObject() override;
 
+        [[nodiscard]] int get_health() const;
+        [[nodiscard]] int get_attack_chance() const;
+        [[nodiscard]] int get_damage() const;
+
     private:
         int health_;
         int attack_chance_;

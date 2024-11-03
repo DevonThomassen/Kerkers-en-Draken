@@ -33,23 +33,27 @@ namespace presentation::console {
                 arguments += words[i];
             }
         }
+
         if (command == "help") {
-            return {CommandKey::HELP};
+            return {
+                    CommandKey::HELP
+            };
         }
         if (command == "start") {
-            return {CommandKey::START};
+            return {
+                    CommandKey::START
+            };
         }
         if (command == "exit" or command == "quit") {
-            return {CommandKey::EXIT};
+            return {
+                    CommandKey::EXIT
+            };
         }
         if (command == "kijk") {
             return {
                     CommandKey::LOOK,
                     arguments
             };
-        }
-        if (command == "zelf") {
-            return {CommandKey::SELF};
         }
         if (command == "ga") {
             return {
@@ -64,12 +68,30 @@ namespace presentation::console {
             };
         }
         if (command == "zoek") {
-            return {CommandKey::SEARCH};
+            return {
+                    CommandKey::SEARCH
+            };
         }
         if (command == "leg") {
-            return {CommandKey::PUT};
+            return {
+                    CommandKey::PUT
+            };
         }
-        return {CommandKey::UNKNOWN};
+        if (command == "consumeer") {
+            return {
+                    CommandKey::CONSUME,
+                    arguments
+            };
+        }
+        if (command == "draag") {
+            return {
+                    CommandKey::HAND,
+                    arguments
+            };
+        }
+        return {
+                CommandKey::UNKNOWN
+        };
     }
 
     void print(const std::string& message) {
@@ -97,4 +119,5 @@ namespace presentation::console {
             return std::nullopt;
         }
     }
+
 } // presentation

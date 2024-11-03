@@ -2,9 +2,17 @@
 
 namespace game_objects {
 
-    ConsumableObject::ConsumableObject(const char* name, const char* description, const int value, const bool invisible)
+    ConsumableObject::ConsumableObject(const char* name, const char* description, const int value, const char* type, const bool invisible)
             : GameObject(name, description, invisible),
-              value_(value) {}
+              type_(type), value_(value) {}
+
+    const char* ConsumableObject::get_type() const {
+        return type_;
+    }
+
+    int ConsumableObject::get_value() const {
+        return value_;
+    }
 
     ConsumableObject::ConsumableObject(const ConsumableObject& other) = default;
     ConsumableObject::ConsumableObject(ConsumableObject&& other) noexcept = default;

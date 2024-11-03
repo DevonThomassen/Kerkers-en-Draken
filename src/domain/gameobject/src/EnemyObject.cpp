@@ -17,4 +17,16 @@ namespace game_objects {
     EnemyObject& EnemyObject::operator=(const EnemyObject& other) = default;
     EnemyObject& EnemyObject::operator=(EnemyObject&& other) noexcept = default;
     EnemyObject::~EnemyObject() = default;
+
+    int EnemyObject::get_health() const {
+        return health_;
+    }
+
+    int EnemyObject::get_attack_chance() const {
+        return attack_chance_;
+    }
+
+    int EnemyObject::get_damage() const {
+        return damage_;
+    }
 }

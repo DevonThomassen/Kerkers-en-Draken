@@ -57,4 +57,8 @@ namespace application {
     Location* GameService::get_current_location_ptr() const {
         return (*locations_)[current_location_index_];
     }
+
+    void GameService::teleport(int amount) {
+        // teleport!
+    }
 }

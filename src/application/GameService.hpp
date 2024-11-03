@@ -57,7 +57,7 @@ namespace application {
         [[nodiscard]] Location* get_current_location_ptr() const;
 
         bool go_to_next_location(Direction direction);
-
+        void teleport(int amount);
     private:
         bool quit_;
         Array <Location>* locations_;

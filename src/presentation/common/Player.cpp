@@ -17,10 +17,12 @@ namespace presentation {
     Player::Player(std::string name)
             : name_(std::move(name)),
               health_(START_HEALTH),
+              attack_chance_(40),
+              weapon_(),
+              armour_(),
               objects_() {}
 
-    Player::~Player() {
-    }
+    Player::~Player() = default;
 
     void Player::take_damage(const int amount) {
 
@@ -47,22 +49,15 @@ namespace presentation {
     }
 
     std::string Player::get_weapon_name() const {
-        for (const auto& weapon: objects_) {
-            if (const auto* weapon_object = dynamic_cast<WeaponObject*>(weapon.get())) {
-                return {weapon->get_name()};
-            }
-        }
-        return constants::NOTHING;
+        return weapon_ != nullptr
+               ? weapon_->get_name()
+               : constants::NOTHING;
     }
 
     std::string Player::get_armour_name() const {
-        std::string default_string = "Geen armour";
-        for (const auto& armour: objects_) {
-            if (const auto* weapon_object = dynamic_cast<ArmourObject*>(armour.get())) {
-                return {armour->get_name()};
-            }
-        }
-        return constants::NOTHING;
+        return armour_ != nullptr
+               ? armour_->get_name()
+               : constants::NOTHING;
     }
 
     int Player::get_gold() const {
@@ -75,13 +70,28 @@ namespace presentation {
     }
 
     std::string Player::get_consumable_names() const {
-        std::string string = "";
+        std::string string;
         for (const auto& consumable: objects_) {
             if (const auto* weapon_object = dynamic_cast<ConsumableObject*>(consumable.get())) {
                 string += std::string(consumable->get_name()) + "\n";
             }
         }
-        if (string == "") {
+        if (string.empty()) {
+            return constants::NOTHING;
+        }
+        return string;
+    }
+
+    std::string Player::get_all_objects_names() const {
+        std::string string;
+        for (const auto& object: objects_) {
+            if (dynamic_cast<ArmourObject*>(object.get())
+                || dynamic_cast<WeaponObject*>(object.get())
+                || dynamic_cast<ConsumableObject*>(object.get())) {
+                string += std::string(object->get_name()) + "\n";
+            }
+        }
+        if (string.empty()) {
             return constants::NOTHING;
         }
         return string;
@@ -92,7 +102,7 @@ namespace presentation {
     }
 
     GameObject* Player::remove_object(const std::string& name) {
-        for (auto& object : objects_) {
+        for (auto& object: objects_) {
             if (object->get_name() == name) {
                 auto temp = object.release();
                 objects_.erase(std::remove(objects_.begin(), objects_.end(), object), objects_.end());
@@ -100,5 +110,44 @@ namespace presentation {
             }
         }
         return nullptr;
+    }
+
+    int Player::consume(ConsumableObject* consumable) {
+        const auto value = consumable->get_value();
+        const auto type = std::string(consumable->get_type());
+        if (type == "levenselixer") {
+            health_ += value;
+            return 0;
+        }
+        if (type == "ervaringsdrank") {
+            attack_chance_ += value;
+            return 0;
+        }
+        if (type == "teleportatiedrank") {
+            return 1;
+        }
+        return -1;
+    }
+
+    bool Player::equip_in_hand(const std::string& name) {
+        if (weapon_ != nullptr) {
+            objects_.push_back(std::move(weapon_));
+        }
+        for (auto it = objects_.begin(); it != objects_.end(); ++it) {
+            if ((*it)->get_name() == name) {
+                if (dynamic_cast<ArmourObject*>((*it).get())) {
+                    armour_ = std::move(*it);
+                    objects_.erase(it);
+                    return true;
+                }
+                if (dynamic_cast<WeaponObject*>((*it).get())) {
+                    weapon_ = std::move(*it);
+                    objects_.erase(it);
+                    return true;
+                }
+                return false;
+            }
+        }
+        return false;
     }
 } // presentation

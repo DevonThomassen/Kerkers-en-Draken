@@ -16,7 +16,7 @@ namespace presentation::commands {
         console::print(std::format("Je hebt de volgende wapen vast: {} \n", player_->get_weapon_name()));
         console::print(std::format("Je draagt de volgende wapenuitrusting: {} \n", player_->get_armour_name()));
         console::print(std::format("Je hebt {} goudstukken: \n", player_->get_gold()));
-        console::print(std::format("Je bezit bestaat uit de volgende objecten: {} \n", player_->get_consumable_names()));
+        console::print(std::format("Je bezit bestaat uit de volgende objecten: {} \n", player_->get_all_objects_names()));
     }
 
 } // presentation::commands

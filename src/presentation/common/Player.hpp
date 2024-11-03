@@ -5,6 +5,8 @@
 
 namespace game_objects {
     class GameObject;
+
+    class ConsumableObject;
 }
 
 using namespace game_objects;
@@ -41,14 +43,20 @@ namespace presentation {
         [[nodiscard]] std::string get_armour_name() const;
         [[nodiscard]] int get_gold() const;
         [[nodiscard]] std::string get_consumable_names() const;
+        [[nodiscard]] std::string get_all_objects_names() const;
 
         void add_object(GameObject* game_object);
         GameObject* remove_object(const std::string& name);
 
+        bool equip_in_hand(const std::string& name);
+        int consume(ConsumableObject* consumable);
+
     private:
         const std::string name_;
         int health_;
-        static const int attack_chance_ = 40;
+        int attack_chance_;
+        std::unique_ptr<GameObject> weapon_;
+        std::unique_ptr<GameObject> armour_;
         std::vector<std::unique_ptr<GameObject>> objects_;
     };
 }
