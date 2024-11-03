@@ -2,6 +2,7 @@
 
 #include "../gameobject/incl/GameObject.hpp"
 #include "../gameobject/incl/EnemyObject.hpp"
+#include "../../domain/common/Direction.hpp"
 
 namespace domain {
 
@@ -87,5 +88,16 @@ namespace domain {
         }
         objects_.push_back(game_object);
         return 0;
+    }
+
+    int Location::get_exit(Direction direction) const {
+        const auto* exit = exits_.get_exit(direction);
+        return exit
+               ? exit->destination->id()
+               : -1;
+    }
+
+    const char* Location::get_possible_directions() const {
+        return exits_.get_possible_directions();
     }
 } // domain

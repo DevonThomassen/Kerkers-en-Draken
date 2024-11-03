@@ -31,7 +31,7 @@ namespace presentation::console {
         if (command == "exit" or command == "quit") {
             return CommandKey::EXIT;
         }
-        if (command == "look") {
+        if (command == "kijk") {
             return CommandKey::LOOK;
         }
         if (command == "zelf") {

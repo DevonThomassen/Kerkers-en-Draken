@@ -2,7 +2,7 @@
 #define LOCATION_HPP
 
 #include "Array.hpp"
-#include "Exit.h"
+#include "ExitManager.hpp"
 
 namespace game_objects {
     class GameObject;
@@ -52,7 +52,8 @@ namespace domain {
          */
         [[maybe_unused]] int add_exit(Direction direction, Location* destination);
 
-        Exit& get_exit(Direction direction);
+        [[nodiscard]] int get_exit(Direction direction) const;
+        const char* get_possible_directions() const;
 
         int add_object(game_objects::GameObject* game_object);
 

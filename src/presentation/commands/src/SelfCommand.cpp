@@ -1,5 +1,8 @@
 #include "../incl/SelfCommand.hpp"
 
+#include "common/Console.hpp"
+#include "common/Player.hpp"
+
 namespace presentation::commands {
 
     SelfCommand::SelfCommand(const std::unique_ptr<Player>& player)

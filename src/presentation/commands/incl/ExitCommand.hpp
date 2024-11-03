@@ -2,7 +2,10 @@
 #define EXITCOMMAND_HPP
 
 #include "ICommand.hpp"
-#include "../../../application/GameService.hpp"
+
+namespace application {
+    class GameService;
+} // application
 
 using namespace application;
 
@@ -20,6 +23,6 @@ namespace presentation::commands {
     private:
         std::shared_ptr<GameService> game_service_;
     };
-}
+} // presentation::commands
 
 #endif //EXITCOMMAND_HPP

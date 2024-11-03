@@ -1,9 +1,11 @@
 #include "../incl/HelpCommand.hpp"
 
+#include "common/Console.hpp"
+
 namespace presentation::commands {
 
     void HelpCommand::execute() {
-        std::cout << "Help command\n";
+        console::print("Help command\n");
     }
 
 } // presentation::commands

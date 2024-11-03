@@ -4,11 +4,16 @@
 #include <unordered_map>
 #include "ICommand.hpp"
 #include "commands/CommandKey.h"
-#include "../../../application/GameService.hpp"
-#include "./common/Player.hpp"
+
+namespace application {
+    class GameService;
+} // application
+
+namespace presentation {
+    class Player;
+} // presentation
 
 namespace presentation::commands {
-
     /**
      * @class CommandInvoker
      * @brief Invokes commands

@@ -4,6 +4,7 @@
 #include "../domain/common/Array.hpp"
 
 namespace domain {
+    enum class Direction;
     class Location;
 }
 
@@ -52,6 +53,8 @@ namespace application {
             [[nodiscard]] bool is_running() const;
 
             [[nodiscard]] Location& get_current_location() const;
+
+            bool go_to_next_location(Direction direction);
         private:
             bool quit_;
             Array<Location>* locations_;

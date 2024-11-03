@@ -1,10 +1,9 @@
 #ifndef ICOMMAND_HPP
 #define ICOMMAND_HPP
 
-#include <iostream>
+#include <memory>
 
 namespace presentation::commands {
-
     /**
      * @class ICommand
      * @brief Interface for command pattern

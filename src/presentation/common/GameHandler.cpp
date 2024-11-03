@@ -59,13 +59,13 @@ namespace presentation {
     }
 
     void GameHandler::set_player() {
-        console::print("Choose a player name: ");
+        console::print("Voer een playernaam in: ");
         const auto playerName = get_input();
         player_ = std::make_unique<Player>(playerName);
     }
 
     void GameHandler::iterate() {
-        print("Enter a command: ");
+        print("Voer een commando in: ");
         const auto commandKey = console::get_command_key(console::get_input());
         invoker_->invoke(commandKey);
     }

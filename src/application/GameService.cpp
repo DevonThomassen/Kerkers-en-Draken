@@ -1,6 +1,7 @@
 #include "GameService.hpp"
 #include "../domain/filereader/FileReader.h"
 #include "../domain/common/Location.hpp"
+#include "../domain/common/Direction.hpp"
 
 namespace application {
 
@@ -36,5 +37,20 @@ namespace application {
 
     Location& GameService::get_current_location() const {
         return *((*locations_)[current_location_index_]);
+    }
+
+    bool GameService::go_to_next_location(Direction direction) {
+        const auto* location=  (*locations_)[current_location_index_];
+        const auto new_id = location->get_exit(direction);
+        if (new_id != -1) {
+            for (int i = 0; i < locations_->size(); i++) {
+                auto new_location = (*locations_)[i];
+                if (new_location->id() == new_id) {
+                    current_location_index_ = i;
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

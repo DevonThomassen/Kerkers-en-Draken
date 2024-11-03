@@ -6,10 +6,10 @@ namespace domain {
      * @brief Constants for the domain
      */
     namespace constants {
-        static const char* NORTH_STR = "North";
-        static const char* SOUTH_STR = "South";
-        static const char* EAST_STR = "East";
-        static const char* WEST_STR = "West";
+        constexpr static const char* NORTH_STR = "noord";
+        constexpr static const char* SOUTH_STR = "zuid";
+        constexpr static const char* EAST_STR = "oost";
+        constexpr static const char* WEST_STR = "west";
     } // constants
     /**
      * @enum Direction

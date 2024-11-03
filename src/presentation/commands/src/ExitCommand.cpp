@@ -1,5 +1,8 @@
 #include "../incl/ExitCommand.hpp"
 
+#include "../../../application/GameService.hpp"
+#include "common/Console.hpp"
+
 using namespace application;
 
 namespace presentation::commands {
@@ -11,7 +14,7 @@ namespace presentation::commands {
 
     void ExitCommand::execute() {
         game_service_->exit();
-        std::cout << "Exiting the game...\n";
+        console::print("Exiting the game...\n");
     }
 
 } // presentation::commands

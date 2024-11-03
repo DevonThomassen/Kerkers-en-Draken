@@ -2,8 +2,10 @@
 #define SELFCOMMAND_HPP
 
 #include "ICommand.hpp"
-#include "../../common/Console.hpp"
-#include "../../common/Player.hpp"
+
+namespace presentation {
+    class Player;
+} // presentation
 
 namespace presentation::commands {
 

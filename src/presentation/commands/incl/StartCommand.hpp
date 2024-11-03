@@ -2,7 +2,11 @@
 #define STARTCOMMAND_HPP
 
 #include "ICommand.hpp"
-#include "../../../application/GameService.hpp"
+#include <string>
+
+namespace application {
+    class GameService;
+} // application
 
 using namespace application;
 
