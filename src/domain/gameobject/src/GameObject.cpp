@@ -22,5 +22,9 @@ namespace game_objects {
         return invisible_;
     }
 
+    void GameObject::set_invisible(bool invisible) {
+        invisible_ = invisible;
+    }
+
 } // game_objects
 

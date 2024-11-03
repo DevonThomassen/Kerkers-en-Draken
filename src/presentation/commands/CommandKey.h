@@ -20,7 +20,8 @@ namespace presentation::commands {
         ATTACK,
         EXIT,
         SELF,
-        GO
+        GO,
+        PUT
     };
 
     struct CommandKeyAndArguments {

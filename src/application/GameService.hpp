@@ -54,6 +54,7 @@ namespace application {
         [[nodiscard]] bool is_running() const;
 
         [[nodiscard]] Location& get_current_location() const;
+        [[nodiscard]] Location* get_current_location_ptr() const;
 
         bool go_to_next_location(Direction direction);
 

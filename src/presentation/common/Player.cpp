@@ -90,4 +90,15 @@ namespace presentation {
     void Player::add_object(GameObject* game_object) {
         objects_.push_back(std::unique_ptr<GameObject>(game_object));
     }
+
+    GameObject* Player::remove_object(const std::string& name) {
+        for (auto& object : objects_) {
+            if (object->get_name() == name) {
+                auto temp = object.release();
+                objects_.erase(std::remove(objects_.begin(), objects_.end(), object), objects_.end());
+                return temp;
+            }
+        }
+        return nullptr;
+    }
 } // presentation

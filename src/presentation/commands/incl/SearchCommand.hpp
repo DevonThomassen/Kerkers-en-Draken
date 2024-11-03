@@ -1,5 +1,5 @@
-#ifndef LOOKROOM_HPP
-#define LOOKROOM_HPP
+#ifndef SEARCHCOMMAND_HPP
+#define SEARCHCOMMAND_HPP
 
 #include "ICommand.hpp"
 
@@ -14,14 +14,13 @@ namespace presentation {
 using namespace application;
 
 namespace presentation::commands {
-    class LookRoomCommand final : public ICommand {
+    class SearchCommand final : public ICommand {
     public:
-        explicit LookRoomCommand(std::shared_ptr<GameService> game_service, std::unique_ptr<Player>& player);
+        explicit SearchCommand(std::shared_ptr<GameService> game_service);
         void execute() override;
     private:
         std::shared_ptr<GameService> game_service_;
-        std::unique_ptr<Player>& player_;
     };
 } // presentation::commands
 
-#endif //LOOKROOM_HPP
+#endif //SEARCHCOMMAND_HPP

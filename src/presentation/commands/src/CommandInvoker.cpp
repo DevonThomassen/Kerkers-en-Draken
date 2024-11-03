@@ -13,6 +13,8 @@
 #include "commands/incl/StartCommand.hpp"
 #include "commands/incl/TakeCommand.hpp"
 #include "commands/incl/LookRoomCommand.hpp"
+#include "commands/incl/SearchCommand.hpp"
+#include "commands/incl/PutObjectDownCommand.hpp"
 
 namespace presentation::commands {
 
@@ -29,6 +31,8 @@ namespace presentation::commands {
         commands_[CommandKey::SELF] = std::make_unique<SelfCommand>(player_);
         commands_[CommandKey::GO] = std::make_unique<GoCommand>(gameService_);
         commands_[CommandKey::TAKE] = std::make_unique<TakeCommand>(gameService_, player_);
+        commands_[CommandKey::SEARCH] = std::make_unique<SearchCommand>(gameService_);
+        commands_[CommandKey::PUT] = std::make_unique<PutObjectDownCommmand>(gameService_, player_);
     }
 
     void CommandInvoker::invoke(const CommandKey& key) {

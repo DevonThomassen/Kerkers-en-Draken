@@ -43,6 +43,12 @@ namespace presentation::console {
         if (command == "pak") {
             return CommandKey::TAKE;
         }
+        if (command == "zoek") {
+            return CommandKey::SEARCH;
+        }
+        if (command == "leg") {
+            return CommandKey::PUT;
+        }
         return CommandKey::UNKNOWN;
     }
 

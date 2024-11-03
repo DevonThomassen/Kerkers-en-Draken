@@ -13,15 +13,16 @@ namespace presentation::commands {
               player_(player) {}
 
     void LookRoomCommand::execute() {
-        const auto& location = game_service_->get_current_location();
+        const auto location = game_service_->get_current_location_ptr();
         console::print(std::format("Mogelijke richting(en): {} \n",
-                                   std::string(location.get_possible_directions())));
+                                   std::string(location->get_possible_directions())));
 
-        const auto& array = location.get_objects();
+        const auto& array = location->get_objects();
         for (int i = 0; i < array.size(); i++) {
             auto object = array[i];
             if (!object->is_invisible()) {
-                if (const auto enemy = dynamic_cast<game_objects::EnemyObject*>(object)) {
+                const auto enemy = dynamic_cast<game_objects::EnemyObject*>(object);
+                if (enemy != nullptr) {
                     console::print(std::format("Vijand: {}\n", object->get_name()));
                 } else {
                     console::print(std::format("Zichtbare object: {}\n", object->get_name()));

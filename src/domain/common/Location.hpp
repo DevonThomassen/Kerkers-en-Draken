@@ -60,6 +60,11 @@ namespace domain {
 
         [[nodiscard]] const Array<game_objects::GameObject>& get_objects() const;
 
+        /**
+         * @brief Searches the room and set all items on visible.
+         */
+        void search_room();
+
     private:
         int id_;
         const char* name_;

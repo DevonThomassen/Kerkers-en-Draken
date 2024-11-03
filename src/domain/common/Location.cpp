@@ -105,8 +105,11 @@ namespace domain {
 
     game_objects::GameObject* Location::take_object(const char* name) {
         for (auto i = 0; i < objects_.size(); ++i) {
-            auto n = objects_[i];
-            if (strcmp(objects_[i]->get_name(), name) == 0) {
+            auto object = objects_[i];
+            if (object->is_invisible()) {
+                continue;
+            }
+            if (strcmp(object->get_name(), name) == 0) {
                 auto* game_object = objects_[i];
                 objects_.remove_at_index(i);
                 return game_object;
@@ -117,5 +120,13 @@ namespace domain {
 
     const Array<game_objects::GameObject>& Location::get_objects() const {
         return objects_;
+    }
+
+    void Location::search_room() {
+        for (auto i = 0; i < objects_.size(); ++i) {
+            if (objects_[i]->is_invisible()) {
+                objects_[i]->set_invisible(false);
+            }
+        }
     }
 } // domain

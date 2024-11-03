@@ -33,6 +33,12 @@ namespace game_objects {
          */
         [[nodiscard]] bool is_invisible() const;
 
+        /**
+         * @brief Set the invisibility of the game object.
+         * @param invisible The invisibility of the game object.
+         */
+        void set_invisible(bool invisible);
+
     private:
         const char* name_;
         const char* description_;

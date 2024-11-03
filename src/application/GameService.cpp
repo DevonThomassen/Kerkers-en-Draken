@@ -53,4 +53,8 @@ namespace application {
         }
         return false;
     }
+
+    Location* GameService::get_current_location_ptr() const {
+        return (*locations_)[current_location_index_];
+    }
 }

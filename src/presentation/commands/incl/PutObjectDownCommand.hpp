@@ -1,5 +1,5 @@
-#ifndef LOOKROOM_HPP
-#define LOOKROOM_HPP
+#ifndef PUTOBJECTDOWNCOMMAND_HPP
+#define PUTOBJECTDOWNCOMMAND_HPP
 
 #include "ICommand.hpp"
 
@@ -14,9 +14,9 @@ namespace presentation {
 using namespace application;
 
 namespace presentation::commands {
-    class LookRoomCommand final : public ICommand {
+    class PutObjectDownCommmand final : public ICommand {
     public:
-        explicit LookRoomCommand(std::shared_ptr<GameService> game_service, std::unique_ptr<Player>& player);
+        explicit PutObjectDownCommmand(std::shared_ptr<GameService> game_service, std::unique_ptr<Player>& player);
         void execute() override;
     private:
         std::shared_ptr<GameService> game_service_;
@@ -24,4 +24,4 @@ namespace presentation::commands {
     };
 } // presentation::commands
 
-#endif //LOOKROOM_HPP
+#endif //PUTOBJECTDOWNCOMMAND_HPP

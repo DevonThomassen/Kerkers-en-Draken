@@ -43,6 +43,7 @@ namespace presentation {
         [[nodiscard]] std::string get_consumable_names() const;
 
         void add_object(GameObject* game_object);
+        GameObject* remove_object(const std::string& name);
 
     private:
         const std::string name_;
