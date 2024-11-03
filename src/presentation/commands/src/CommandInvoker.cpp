@@ -35,11 +35,11 @@ namespace presentation::commands {
         commands_[CommandKey::PUT] = std::make_unique<PutObjectDownCommmand>(gameService_, player_);
     }
 
-    void CommandInvoker::invoke(const CommandKey& key) {
+    void CommandInvoker::invoke(const CommandKey& key, const std::string& arguments) {
         if (commands_.contains(key)) {
-            commands_[key]->execute();
+            commands_[key]->execute(arguments);
         } else {
-            commands_[CommandKey::UNKNOWN]->execute();
+            commands_[CommandKey::UNKNOWN]->execute(arguments);
         }
     }
 

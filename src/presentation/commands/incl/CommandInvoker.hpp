@@ -21,7 +21,7 @@ namespace presentation::commands {
     class CommandInvoker {
     public:
         explicit CommandInvoker(std::unique_ptr<Player>& player, const std::shared_ptr<application::GameService>& gameService);
-        void invoke(const CommandKey& key);
+        void invoke(const CommandKey& key, const std::string& arguments);
 
     private:
         std::unique_ptr<Player>& player_;

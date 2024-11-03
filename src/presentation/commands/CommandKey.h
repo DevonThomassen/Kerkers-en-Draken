@@ -26,7 +26,7 @@ namespace presentation::commands {
 
     struct CommandKeyAndArguments {
         CommandKey key;
-        std::vector<std::string> arguments;
+        std::string arguments;
     };
 
 }

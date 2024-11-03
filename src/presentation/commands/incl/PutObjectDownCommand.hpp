@@ -17,7 +17,7 @@ namespace presentation::commands {
     class PutObjectDownCommmand final : public ICommand {
     public:
         explicit PutObjectDownCommmand(std::shared_ptr<GameService> game_service, std::unique_ptr<Player>& player);
-        void execute() override;
+        void execute(const std::string& arguments) override;
     private:
         std::shared_ptr<GameService> game_service_;
         std::unique_ptr<Player>& player_;

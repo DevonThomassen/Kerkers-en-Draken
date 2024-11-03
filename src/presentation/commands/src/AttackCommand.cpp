@@ -2,7 +2,7 @@
 
 namespace presentation::commands {
 
-    void AttackCommand::execute() {
+    void AttackCommand::execute(const std::string& arguments) {
     }
     
 } // presentation::commands

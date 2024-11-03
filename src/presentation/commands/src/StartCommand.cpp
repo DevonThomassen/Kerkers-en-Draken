@@ -13,7 +13,7 @@ namespace presentation::commands {
               default_path(std::filesystem::current_path().string() + "/resources") {
     }
 
-    void StartCommand::execute() {
+    void StartCommand::execute(const std::string& arguments) {
         if (gameService_->is_running()) {
             console::print("Game is already running.\n");
             return;

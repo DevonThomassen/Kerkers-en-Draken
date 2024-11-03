@@ -16,7 +16,7 @@ namespace presentation::commands {
             : game_service_(std::move(game_service)),
               player_(player) {}
 
-    void PutObjectDownCommmand::execute() {
+    void PutObjectDownCommmand::execute(const std::string& arguments) {
         console::print("Dit zijn je objecten:\n");
         for (auto& object: player_->get_objects()) {
             console::print(std::format("{}\n", object->get_name()));

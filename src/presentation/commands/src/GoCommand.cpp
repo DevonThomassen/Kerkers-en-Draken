@@ -8,18 +8,14 @@
 presentation::commands::GoCommand::GoCommand(std::shared_ptr<GameService> game_service_)
         : game_service_(std::move(game_service_)) {}
 
-void presentation::commands::GoCommand::execute() {
-    console::print(std::format("Mogelijke richting(en): {} \n",
-                               std::string(game_service_->get_current_location().get_possible_directions())));
-    console::print("Waar wil je naar toe? ");
-    const auto direction = console::get_input();
-    if (direction == "noord") {
+void presentation::commands::GoCommand::execute(const std::string& arguments) {
+    if (arguments == "noord") {
         game_service_->go_to_next_location(domain::Direction::North);
-    } else if (direction == "oost") {
+    } else if (arguments == "oost") {
         game_service_->go_to_next_location(domain::Direction::East);
-    } else if (direction == "zuid") {
+    } else if (arguments == "zuid") {
         game_service_->go_to_next_location(domain::Direction::South);
-    } else if (direction == "west") {
+    } else if (arguments == "west") {
         game_service_->go_to_next_location(domain::Direction::West);
     } else {
         console::error("Ongeldige richting.\n");

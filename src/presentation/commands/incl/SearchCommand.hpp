@@ -17,7 +17,7 @@ namespace presentation::commands {
     class SearchCommand final : public ICommand {
     public:
         explicit SearchCommand(std::shared_ptr<GameService> game_service);
-        void execute() override;
+        void execute(const std::string& arguments) override;
     private:
         std::shared_ptr<GameService> game_service_;
     };

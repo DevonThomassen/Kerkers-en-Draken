@@ -11,7 +11,7 @@ namespace presentation::commands {
     class ICommand {
     public:
         virtual ~ICommand() = default;
-        virtual void execute() = 0;
+        virtual void execute(const std::string& arguments) = 0;
     };
 
 }

@@ -9,7 +9,7 @@ namespace presentation::commands {
             : player_(player) {
     }
 
-    void SelfCommand::execute() {
+    void SelfCommand::execute(const std::string& arguments) {
         console::print(std::format("Gegevens van {}: \n", player_->get_name()));
         console::print(std::format("Je hebt {} levenspunten\n", player_->get_health()));
         console::print(std::format("Je hebt een aanvalskans van {}%\n", player_->get_attack_chance()));

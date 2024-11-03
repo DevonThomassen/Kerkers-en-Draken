@@ -20,14 +20,7 @@ namespace presentation::console {
      * @param input The input
      * @return The command key
      */
-    [[nodiscard]] CommandKey get_command_key(const std::string& input);
-
-    /**
-     * @brief Get the command key and arguments from the input
-     * @param input The input
-     * @return The command key and arguments
-     */
-    [[nodiscard]] CommandKeyAndArguments get_command_key_and_arguments(const std::string& input);
+    [[nodiscard]] CommandKeyAndArguments get_command_key(const std::string& input);
 
     /**
      * @brief Print a message

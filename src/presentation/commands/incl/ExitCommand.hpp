@@ -18,7 +18,7 @@ namespace presentation::commands {
     class ExitCommand final : public ICommand {
     public:
         explicit ExitCommand(std::shared_ptr<GameService> game_service_);
-        void execute() override;
+        void execute(const std::string& arguments) override;
 
     private:
         std::shared_ptr<GameService> game_service_;

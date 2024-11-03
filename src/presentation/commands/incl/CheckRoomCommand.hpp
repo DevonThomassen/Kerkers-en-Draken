@@ -17,7 +17,7 @@ namespace presentation::commands {
     class CheckRoomCommand final : public ICommand {
     public:
         explicit CheckRoomCommand(std::shared_ptr<GameService> game_service);
-        void execute() override;
+        void execute(const std::string& arguments) override;
 
     private:
         std::shared_ptr<GameService> game_service_;

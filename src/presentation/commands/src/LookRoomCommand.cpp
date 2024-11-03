@@ -12,7 +12,7 @@ namespace presentation::commands {
             : game_service_(std::move(game_service)),
               player_(player) {}
 
-    void LookRoomCommand::execute() {
+    void LookRoomCommand::execute(const std::string& arguments) {
         const auto location = game_service_->get_current_location_ptr();
         console::print(std::format("Mogelijke richting(en): {} \n",
                                    std::string(location->get_possible_directions())));

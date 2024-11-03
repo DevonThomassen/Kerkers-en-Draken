@@ -12,7 +12,7 @@ namespace presentation::commands {
 
     }
 
-    void ExitCommand::execute() {
+    void ExitCommand::execute(const std::string& arguments) {
         game_service_->exit();
         console::print("Exiting the game...\n");
     }

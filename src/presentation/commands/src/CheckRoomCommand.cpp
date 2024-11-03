@@ -10,7 +10,7 @@ namespace presentation::commands {
             : game_service_(std::move(game_service)) {
     }
 
-    void CheckRoomCommand::execute() {
+    void CheckRoomCommand::execute(const std::string& arguments) {
         console::print(game_service_->get_current_location().simple_description());
     }
 

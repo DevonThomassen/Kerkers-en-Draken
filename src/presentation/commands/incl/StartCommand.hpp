@@ -17,7 +17,7 @@ namespace presentation::commands {
         explicit StartCommand(std::shared_ptr<GameService> gameService);
         ~StartCommand() override = default;
 
-        void execute() override;
+        void execute(const std::string& arguments) override;
 
     private:
         std::shared_ptr<GameService> gameService_;

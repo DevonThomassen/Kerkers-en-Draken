@@ -17,7 +17,7 @@ namespace presentation::commands {
     class GoCommand final : public ICommand {
     public:
         explicit GoCommand(std::shared_ptr<GameService> game_service_);
-        void execute() override;
+        void execute(const std::string& arguments) override;
 
     private:
         std::shared_ptr<GameService> game_service_;

@@ -11,7 +11,7 @@ namespace presentation::commands {
      */
     class UnknownCommand final : public ICommand {
     public:
-        void execute() override;
+        void execute(const std::string& arguments) override;
     };
 }
 #endif //UNKNOWNCOMMAND_HPP

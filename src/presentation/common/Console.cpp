@@ -15,48 +15,61 @@ namespace presentation::console {
         return result;
     }
 
-    CommandKey get_command_key(const std::string& input) {
+    CommandKeyAndArguments get_command_key(const std::string& input) {
         const auto words = splits(input);
         if (words.empty()) {
-            return CommandKey::UNKNOWN;
+            return {
+                    .key = CommandKey::UNKNOWN
+            };
         }
 
         const auto& command = words[0];
+        std::string arguments;
+        if (words.size() > 1) {
+            for (size_t i = 1; i < words.size(); ++i) {
+                if (i > 1) {
+                    arguments += " ";
+                }
+                arguments += words[i];
+            }
+        }
         if (command == "help") {
-            return CommandKey::HELP;
+            return {CommandKey::HELP};
         }
         if (command == "start") {
-            return CommandKey::START;
+            return {CommandKey::START};
         }
         if (command == "exit" or command == "quit") {
-            return CommandKey::EXIT;
+            return {CommandKey::EXIT};
         }
         if (command == "kijk") {
-            return CommandKey::LOOK;
+            return {
+                    CommandKey::LOOK,
+                    arguments
+            };
         }
         if (command == "zelf") {
-            return CommandKey::SELF;
+            return {CommandKey::SELF};
         }
         if (command == "ga") {
-            return CommandKey::GO;
+            return {
+                    CommandKey::GO,
+                    arguments
+            };
         }
         if (command == "pak") {
-            return CommandKey::TAKE;
+            return {
+                    CommandKey::TAKE,
+                    arguments
+            };
         }
         if (command == "zoek") {
-            return CommandKey::SEARCH;
+            return {CommandKey::SEARCH};
         }
         if (command == "leg") {
-            return CommandKey::PUT;
+            return {CommandKey::PUT};
         }
-        return CommandKey::UNKNOWN;
-    }
-
-    CommandKeyAndArguments get_command_key_and_arguments(const std::string& input) {
-        return CommandKeyAndArguments{
-                .key = get_command_key(input),
-                .arguments = splits(input)
-        };
+        return {CommandKey::UNKNOWN};
     }
 
     void print(const std::string& message) {

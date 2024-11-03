@@ -13,10 +13,8 @@ namespace presentation::commands {
 
     }
 
-    void TakeCommand::execute() {
-        console::print("Welk object wil je oppakken\n");
-        const auto input = console::get_input();
-        const auto game_object = game_service_->get_current_location().take_object(input.c_str());
+    void TakeCommand::execute(const std::string& arguments) {
+        const auto game_object = game_service_->get_current_location().take_object(arguments.c_str());
         if (game_object == nullptr) {
             console::error("Dit object bestaat niet\n");
             return;

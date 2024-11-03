@@ -66,8 +66,8 @@ namespace presentation {
 
     void GameHandler::iterate() {
         print("Voer een commando in: ");
-        const auto commandKey = console::get_command_key(console::get_input());
-        invoker_->invoke(commandKey);
+        const auto [commandKey, arguments] = console::get_command_key(console::get_input());
+        invoker_->invoke(commandKey, arguments);
     }
 
 } // presentation

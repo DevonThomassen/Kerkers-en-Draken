@@ -12,7 +12,7 @@ namespace presentation::commands {
     class SelfCommand final : public ICommand {
     public:
         explicit SelfCommand(const std::unique_ptr<Player>& player);
-        void execute() override;
+        void execute(const std::string& arguments) override;
 
     private:
         const std::unique_ptr<Player>& player_;
