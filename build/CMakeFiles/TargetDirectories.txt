@@ -1,0 +1,6 @@
+/Users/devonthomassen/CLionProjects/kerkers-en-draken/build/CMakeFiles/domain.dir
+/Users/devonthomassen/CLionProjects/kerkers-en-draken/build/CMakeFiles/application.dir
+/Users/devonthomassen/CLionProjects/kerkers-en-draken/build/CMakeFiles/infrastructure.dir
+/Users/devonthomassen/CLionProjects/kerkers-en-draken/build/CMakeFiles/kerkers_en_draken.dir
+/Users/devonthomassen/CLionProjects/kerkers-en-draken/build/CMakeFiles/edit_cache.dir
+/Users/devonthomassen/CLionProjects/kerkers-en-draken/build/CMakeFiles/rebuild_cache.dir
