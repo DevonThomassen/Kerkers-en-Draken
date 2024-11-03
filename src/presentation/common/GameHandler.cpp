@@ -29,6 +29,11 @@ namespace presentation {
         gameService_->main_loop([&]() {
             this->iterate();
         });
+        console::print("Wil je opnieuw spelen? Typ `opnieuw` om opnieuw te spelen.\n");
+        if (console::get_input() == "opnieuw") {
+            start();
+        }
+        console::print("Spel is afgelopen.\n");
     }
 
     void GameHandler::set_start_up() {
