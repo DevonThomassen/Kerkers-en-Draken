@@ -5,6 +5,7 @@ CMakeLists.txt.user
 
 # Build directories
 cmake-build-debug/
+build/
 bin/
 out/
 
