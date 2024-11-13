@@ -1,5 +1,6 @@
 #include "common/GameHandler.hpp"
 #include "../domain/common/Location.hpp"
+#include "../infrastructure/logger/FileLogger.hpp"
 
 const auto print = [](const std::string& str) {
     presentation::console::print(str);
@@ -11,8 +12,9 @@ const auto get_input = []() {
 
 namespace presentation {
 
-    GameHandler::GameHandler()
-            : gameService_(nullptr),
+    GameHandler::GameHandler(std::unique_ptr<ILogger> logger)
+            : logger_(std::move(logger)),
+              gameService_(nullptr),
               invoker_(nullptr),
               player_(nullptr) {}
 
@@ -77,7 +79,9 @@ namespace presentation {
             return;
         }
         print("Voer een commando in: ");
-        const auto [commandKey, arguments] = console::get_command_key(console::get_input());
+        const auto input = console::get_input();
+        logger_->log(input.c_str());
+        const auto [commandKey, arguments] = console::get_command_key(input);
         invoker_->invoke(commandKey, arguments);
     }
 

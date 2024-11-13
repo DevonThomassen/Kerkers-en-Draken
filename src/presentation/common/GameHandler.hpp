@@ -6,13 +6,15 @@
 #include "commands/incl/CommandInvoker.hpp"
 #include "common/Console.hpp"
 #include "common/Player.hpp"
+#include "../domain/logger/ILogger.hpp"
 
+using namespace logger;
 using namespace presentation::commands;
 
 namespace presentation {
     class GameHandler final {
     public:
-        explicit GameHandler();
+        explicit GameHandler(std::unique_ptr<ILogger> logger);
 
         /**
          * @brief Starts the game
@@ -20,6 +22,7 @@ namespace presentation {
         void start();
 
     private:
+        std::unique_ptr<ILogger> logger_;
         std::shared_ptr<application::GameService> gameService_;
         std::unique_ptr<CommandInvoker> invoker_;
         std::unique_ptr<Player> player_;

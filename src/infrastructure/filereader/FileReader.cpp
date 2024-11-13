@@ -2,6 +2,7 @@
 #include "../lib/tinyxml2.h"
 #include <sstream>
 #include <iostream>
+#include <optional>
 
 #include "../../domain/database/DatabaseRepository.hpp"
 #include "../../domain/builder/DungeonBuilder.hpp"
