@@ -5,14 +5,16 @@
 
 namespace domain {
     enum class Direction;
-
     class Location;
 } // domain
 
 using namespace domain;
 
+/**
+ * @namespace application
+ * @brief The namespace for the application
+ */
 namespace application {
-
     /**
     * @class GameService
     * @brief Class for game commands

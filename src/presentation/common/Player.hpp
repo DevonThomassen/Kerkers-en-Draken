@@ -5,7 +5,6 @@
 
 namespace game_objects {
     class GameObject;
-
     class ConsumableObject;
 }
 

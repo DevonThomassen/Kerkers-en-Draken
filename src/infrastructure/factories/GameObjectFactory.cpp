@@ -9,6 +9,8 @@
 
 #include "../database/Common.h"
 
+using namespace infrastructure::common;
+
 namespace factories {
 
     GameObject*
@@ -16,17 +18,17 @@ namespace factories {
                                          bool invisible) {
         char* full_name = new char[strlen(name) + 12];
         snprintf(full_name, strlen(name) + 12, "%s %d", name, ++object_count_);
-        const auto type_enum = common::convert_to_game_object_type(type);
+        const auto type_enum = convert_to_game_object_type(type);
         switch (type_enum) {
-            case common::GameObjectType::ARMOUR:
+            case GameObjectType::ARMOUR:
                 return new game_objects::ArmourObject(full_name, description, value, invisible);
-            case common::GameObjectType::WEAPON:
+            case GameObjectType::WEAPON:
                 return new game_objects::WeaponObject(full_name, description, value, invisible);
-            case common::GameObjectType::CONSUMABLE:
+            case GameObjectType::CONSUMABLE:
                 return new game_objects::ConsumableObject(full_name, description, value, type, invisible);
-            case common::GameObjectType::GOLD:
+            case GameObjectType::GOLD:
                 return new game_objects::GoldObject(full_name, description, value, invisible);
-            case common::GameObjectType::BASE:
+            case GameObjectType::BASE:
             default:
                 delete[] full_name;
                 return nullptr;

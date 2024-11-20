@@ -10,7 +10,6 @@ namespace application {
 using namespace application;
 
 namespace presentation::commands {
-
     /**
      * @class ExitCommand
      * @brief Command for exiting the game

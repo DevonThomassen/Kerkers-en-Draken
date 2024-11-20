@@ -10,8 +10,16 @@
 
 namespace database {
 
+    /**
+     * @var db_
+     * @brief A static variable that represents the database.
+     */
     static sqlite3* db_ = nullptr;
 
+    /**
+     * @namespace constants
+     * @brief Contains constants for the DatabaseRepository class.
+     */
     namespace constants {
         static constexpr const auto ENEMY_QUERY = "SELECT naam, omschrijving, minimumobjecten, maximumobjecten, levenspunten, aanvalskans, minimumschade, maximumschade FROM Vijanden WHERE naam = ?";
         static constexpr const auto ITEM_QUERY = "SELECT naam, omschrijving, type, minimumwaarde, maximumwaarde, bescherming FROM Objecten WHERE naam = ?";

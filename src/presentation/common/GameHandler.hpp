@@ -12,6 +12,10 @@ using namespace logger;
 using namespace presentation::commands;
 
 namespace presentation {
+    /**
+     * @class GameHandler
+     * @brief Represents the game handler
+     */
     class GameHandler final {
     public:
         explicit GameHandler(std::unique_ptr<ILogger> logger);

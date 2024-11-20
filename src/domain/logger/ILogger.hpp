@@ -1,6 +1,10 @@
 #ifndef ILOGGER_HPP
 #define ILOGGER_HPP
 
+/**
+ * @namespace logger
+ * @brief Contains logging functionality
+ */
 namespace logger {
 
     /**

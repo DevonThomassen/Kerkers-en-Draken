@@ -8,7 +8,10 @@ namespace presentation {
 } // presentation
 
 namespace presentation::commands {
-
+    /**
+     * @class SelfCommand
+     * @brief Represents the command to show the player's information
+     */
     class SelfCommand final : public ICommand {
     public:
         explicit SelfCommand(const std::unique_ptr<Player>& player);

@@ -6,6 +6,9 @@
 
 using namespace presentation::commands;
 
+/**
+ * @brief Contains functionality for the console
+ */
 namespace presentation::console {
 
     /**

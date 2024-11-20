@@ -14,6 +14,10 @@ namespace presentation {
 using namespace application;
 
 namespace presentation::commands {
+    /**
+     * @class PutObjectDownCommmand
+     * @brief Responsible for putting an object down
+     */
     class PutObjectDownCommmand final : public ICommand {
     public:
         explicit PutObjectDownCommmand(std::shared_ptr<GameService> game_service, std::unique_ptr<Player>& player);

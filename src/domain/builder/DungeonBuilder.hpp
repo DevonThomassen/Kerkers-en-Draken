@@ -13,10 +13,15 @@ namespace domain {
     enum class Direction;
 }
 
-using namespace domain;
-
-namespace builder {
-
+/**
+ * @namespace domain::builder
+ * @brief Builder pattern for initializing a dungeon
+ */
+namespace domain::builder {
+    /**
+     * @class DungeonBuilder
+     * @brief A class that represents a builder for a dungeon
+     */
     class DungeonBuilder final {
     public:
         explicit DungeonBuilder(int capacity);

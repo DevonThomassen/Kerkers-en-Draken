@@ -9,8 +9,8 @@ namespace presentation {
 
 namespace presentation::commands {
     /**
-     * @class GoCommand
-     * @brief Command for going to the next location
+     * @class GodModeCommand
+     * @brief Command for enabling god mode
      */
     class GodModeCommand final : public ICommand {
     public:

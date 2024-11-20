@@ -1,6 +1,10 @@
 #ifndef GAMEOBJECT_HPP
 #define GAMEOBJECT_HPP
 
+/**
+ * @namespace game_objects
+ * @brief Contains game objects.
+ */
 namespace game_objects {
     /**
      * @class GameObject

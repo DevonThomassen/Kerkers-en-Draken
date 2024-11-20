@@ -10,6 +10,10 @@ namespace domain {
 using domain::Array;
 using domain::Location;
 
+/**
+ * @namespace file_reader
+ * @brief Contains functionality for reading files.
+ */
 namespace file_reader {
     /**
      * @brief Reads a file from the given path.

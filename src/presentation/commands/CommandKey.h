@@ -4,6 +4,10 @@
 #include <vector>
 #include <iostream>
 
+/**
+ * @namespace presentation::commands
+ * @brief Contains functionality for commands
+ */
 namespace presentation::commands {
 
     /**

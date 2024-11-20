@@ -8,9 +8,7 @@
 #define SOURCE_NOT_FOUND (-1)
 #define DESTINATION_NOT_FOUND (-2)
 
-using namespace domain;
-
-namespace builder {
+namespace domain::builder {
 
     DungeonBuilder::DungeonBuilder(const int capacity)
             : locations_(new Array<Location>(capacity)) {}

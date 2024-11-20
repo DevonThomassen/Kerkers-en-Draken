@@ -10,7 +10,9 @@
 #include "../domain/common/RandomEngine.hpp"
 
 namespace presentation {
-
+    /**
+     * @brief Constants for the Player class
+     */
     namespace constants {
         static constexpr const std::string NOTHING = "Geen";
     }

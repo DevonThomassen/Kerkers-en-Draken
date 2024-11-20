@@ -7,7 +7,10 @@
 #include <fstream>
 
 namespace logger {
-
+    /**
+     * @class FileLogger
+     * @brief A class that represents a logger that writes to a file
+     */
     class FileLogger : public ILogger {
     public:
         explicit FileLogger(const char* file_name);

@@ -6,10 +6,10 @@
 namespace factories {
 
     /**
-     * @namespace constants
+     * @namespace factories::location::constants
      * @brief A namespace for constants used in the LocationFactory class.
      */
-    namespace constants {
+    namespace location::constants {
         static const int MIN_VISIBLE_OBJECTS = 0;
         static const int MAX_VISIBLE_OBJECTS = 3;
 

@@ -20,8 +20,4 @@ namespace logger {
     void FileLogger::operator<<(const char* line) {
         filestream_ << line << std::endl;
     }
-
-    void FileLogger::close() {
-        filestream_.close();
-    }
 } // logger

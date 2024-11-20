@@ -14,6 +14,10 @@ namespace presentation {
 using namespace application;
 
 namespace presentation::commands {
+    /**
+     * @class ConsumeCommand
+     * @brief Consumes an item in the player's inventory
+     */
     class ConsumeCommand final : public ICommand {
     public:
         explicit ConsumeCommand(std::shared_ptr<GameService> game_service, std::unique_ptr<Player>& player);

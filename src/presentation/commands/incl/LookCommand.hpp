@@ -14,6 +14,10 @@ namespace presentation {
 using namespace application;
 
 namespace presentation::commands {
+    /**
+     * @class LookCommand
+     * @brief Command to look at the room or a specific item in the room.
+     */
     class LookCommand final : public ICommand {
     public:
         explicit LookCommand(std::shared_ptr<GameService> game_service, std::unique_ptr<Player>& player);

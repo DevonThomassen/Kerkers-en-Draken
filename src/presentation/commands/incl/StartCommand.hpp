@@ -11,7 +11,10 @@ namespace application {
 using namespace application;
 
 namespace presentation::commands {
-
+    /**
+     * @class StartCommand
+     * @brief Represents the command to start the game
+     */
     class StartCommand : public ICommand {
     public:
         explicit StartCommand(std::shared_ptr<GameService> gameService);

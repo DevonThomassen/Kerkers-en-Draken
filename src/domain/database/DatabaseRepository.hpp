@@ -8,6 +8,10 @@ namespace game_objects {
     class GameObject;
 }
 
+/**
+ * @namespace database
+ * @brief Contains functionality for the database
+ */
 namespace database {
     /**
      * @class DatabaseRepository

@@ -8,6 +8,10 @@ namespace presentation {
 } // presentation
 
 namespace presentation::commands {
+    /**
+     * @class HandCommand
+     * @brief Command for showing the player's hand
+     */
     class HandCommand final : public ICommand {
     public:
         explicit HandCommand(std::unique_ptr<Player>& player);

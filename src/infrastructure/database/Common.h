@@ -3,8 +3,11 @@
 
 #include <cstring>
 
-namespace common {
-
+/**
+ * @namespace infrastructure::common
+ * @brief Contains common classes and functions for the infrastructure layer
+ */
+namespace infrastructure::common {
     /**
      * @enum GameObjectType
      * @brief Represents the type of a game object for the database

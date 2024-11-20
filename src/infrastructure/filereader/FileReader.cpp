@@ -9,9 +9,11 @@
 #include "../../domain/common/Direction.hpp"
 #include "../../domain/common/Location.hpp"
 
+using namespace domain;
+
 namespace file_reader {
-    /*
-     * Constants used in the XML file
+    /**
+     * @brief Constants for the file reader
      */
     namespace constants {
         static constexpr const auto ID = "id";

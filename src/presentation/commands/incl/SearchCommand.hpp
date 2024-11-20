@@ -14,6 +14,10 @@ namespace presentation {
 using namespace application;
 
 namespace presentation::commands {
+    /**
+     * @class SearchCommand
+     * @brief Responsible for searching the current location
+     */
     class SearchCommand final : public ICommand {
     public:
         explicit SearchCommand(std::shared_ptr<GameService> game_service);

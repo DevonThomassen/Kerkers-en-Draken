@@ -10,7 +10,10 @@ namespace game_objects {
 }
 
 namespace domain {
-
+    /**
+     * @class Location
+     * @brief Represents a location in the game.
+     */
     class Location final {
     public:
         explicit Location(int id, const char* name, const char* description);
