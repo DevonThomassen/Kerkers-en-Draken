@@ -2,19 +2,14 @@
 
 namespace domain {
 
-    LeaderboardRow::LeaderboardRow() : name(nullptr), gold(0) {}
+    LeaderboardRow::LeaderboardRow(const char* name, const int gold)
+            : name(name), gold(gold) {}
 
     LeaderboardRow::~LeaderboardRow() {
         delete[] name;
     }
 
-    Leaderboard::Leaderboard(LeaderboardRow* rows, int row_count)
-            : rows(rows), row_count(row_count) {}
-
-    Leaderboard::Leaderboard()
-            : rows(nullptr), row_count(0) {}
-
-    Leaderboard::~Leaderboard() {
-        delete[] rows;
+    Leaderboard::Leaderboard(int size) {
+        rows = Array<LeaderboardRow>(size);
     }
 }

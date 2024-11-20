@@ -1,16 +1,18 @@
 #ifndef LEADERBOARD_H
 #define LEADERBOARD_H
 
+#include "Array.hpp"
+
 namespace domain {
     /**
      * @struct LeaderboardRow
      * @brief Represents a row in the leaderboard.
      */
     struct LeaderboardRow {
-        char* name;
-        int gold;
+        const char* name;
+        const int gold;
 
-        LeaderboardRow();
+        explicit LeaderboardRow(const char* name, int gold);
         ~LeaderboardRow();
     };
 
@@ -19,12 +21,13 @@ namespace domain {
      * @brief Represents a leaderboard.
      */
     struct Leaderboard {
-        LeaderboardRow* rows;
-        int row_count;
+        /**
+         * @var rows
+         * @brief An array of leaderboard rows.
+         */
+        Array<LeaderboardRow> rows;
 
-        explicit Leaderboard(LeaderboardRow* rows, int row_count);
-        Leaderboard();
-        ~Leaderboard();
+        explicit Leaderboard(int size);
     };
 }
 
