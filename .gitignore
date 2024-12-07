@@ -8,6 +8,7 @@ cmake-build-debug/
 build/
 bin/
 out/
+docs/
 
 # Object files
 *.o

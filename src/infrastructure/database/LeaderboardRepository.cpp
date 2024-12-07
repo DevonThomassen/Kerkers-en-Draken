@@ -6,6 +6,12 @@ using namespace domain;
 
 namespace database {
 
+    /**
+     * @var db_
+     * @brief A static variable that represents the database.
+     */
+    static sqlite3* db_ = nullptr;
+
 //    const char* READ_LEADERBOARD_QUERY = "SELECT naam, goudstukken FROM leaderboard";
 
     LeaderboardRepository::LeaderboardRepository() {

@@ -7,7 +7,6 @@
 using namespace domain;
 
 namespace database {
-
     /**
      * @class LeaderboardRepository
      * @brief A class that represents a database for leaderboards.
@@ -17,8 +16,6 @@ namespace database {
         explicit LeaderboardRepository();
         int create_row(const char* name, const int gold_amount) const;
         Leaderboard* read_leaderboard();
-
-    private:
     };
 
 }
