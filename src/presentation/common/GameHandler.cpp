@@ -20,7 +20,11 @@ namespace presentation {
 
     void GameHandler::start() {
         gameService_ = std::make_shared<application::GameService>();
-        set_start_up();
+        const auto setup_status = set_start_up();
+        if (setup_status != GAME_START_SUCCESS) {
+            console::print("Er is iets fout gegaan bij het opzetten van het spel.\n");
+            return;
+        }
         set_player();
         invoker_ = std::make_unique<CommandInvoker>(player_, gameService_);
 
@@ -38,28 +42,31 @@ namespace presentation {
         console::print("Spel is afgelopen.\n");
     }
 
-    void GameHandler::set_start_up() {
+    int GameHandler::set_start_up() {
         console::print("Welkom bij het spel!\n");
         console::print(
                 "Als je het spel wilt genereren type `gen` anders voer hier het pad naam in van het bestand: \n");
         const auto path = console::get_input();
 
         if (path == "gen") {
-            generate_locations();
-        } else {
-            const auto path2 = "/Users/devonthomassen/CLionProjects/kerkers-en-draken/resources/kasteelruine.xml";
-            gameService_->start(path2);
-//            gameService_->start(path.c_str());
+            return generate_locations();
         }
+        const auto path2 = "/Users/devonthomassen/CLionProjects/kerkers-en-draken/resources/kasteelruine.xml";
+        return gameService_->start(path2);
+//        gameService_->start(path.c_str());
     }
 
-    void GameHandler::generate_locations() {
+    int GameHandler::generate_locations() {
         while (true) {
-            console::print("Hoeveel locaties wil je genereren? ");
+            console::print("Hoeveel locaties wil je genereren? (max 20) ");
             const auto amount = console::get_input_as_int();
             if (amount.has_value()) {
-                gameService_->start(amount.value());
-                return;
+                const auto result = gameService_->start(amount.value());
+                if (result != GAME_START_SUCCESS) {
+                    console::print("Er is iets fout gegaan bij het genereren van de locaties.\n");
+                    return GAME_START_FAILURE;
+                }
+                return GAME_START_SUCCESS;
             }
             console::print("Ongeldige invoer, probeer opnieuw.\n");
         }

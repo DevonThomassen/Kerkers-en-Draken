@@ -1,11 +1,9 @@
 #ifndef ENEMYFACTORY_H
 #define ENEMYFACTORY_H
 
-#include <cstdio>
-
-#include "../../domain/gameobject/incl/EnemyObject.hpp"
-
-using namespace game_objects;
+namespace game_objects {
+    class EnemyObject;
+} // game_objects
 
 namespace factories {
     /**
@@ -26,12 +24,8 @@ namespace factories {
          * @param description The description of the enemy.
          * @return An EnemyObject with the given name and description.
          */
-        static EnemyObject*
-        create(int health, int attack_chance, int damage, const char* name, const char* description) {
-            char* full_name = new char[strlen(name) + 12];
-            snprintf(full_name, strlen(name) + 12, "%s %d", name, ++enemy_count_);
-            return new EnemyObject(health, attack_chance, damage, full_name, description);
-        }
+        static game_objects::EnemyObject*
+        create(int health, int attack_chance, int damage, const char* name, const char* description);
     };
 } // factories
 

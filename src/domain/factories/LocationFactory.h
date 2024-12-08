@@ -1,7 +1,9 @@
 #ifndef LOCATIONFACTORY_H
 #define LOCATIONFACTORY_H
 
-#include "../common/Location.hpp"
+namespace domain {
+    class Location;
+}
 
 namespace factories {
 
@@ -27,15 +29,20 @@ namespace factories {
      */
     struct LocationFactory {
         /**
-         * @brief Creates a Location object with the given x and y coordinates.
+         * @brief Creates a Location object with the given id.
          * @param id The id of the location.
          * @param name The name of the location.
          * @param description The description of the location.
-         * @return A Location pointer with the given x and y coordinates.
+         * @return A Location pointer with the given id.
          */
-        static domain::Location* create(int id, const char* name, const char* description) {
-            return new domain::Location(id, name, description);
-        }
+        static domain::Location* create(int id, const char* name, const char* description);
+
+        /**
+         * @brief Creates a Location object with the given id.
+         * @param id The id of the location.
+         * @return A Location pointer with the given id.
+         */
+        static domain::Location* create(int id);
     };
 } // factories
 

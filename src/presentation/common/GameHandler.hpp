@@ -34,12 +34,12 @@ namespace presentation {
         /**
          * @brief Sets up the game
          */
-        void set_start_up();
+        int set_start_up();
 
         /**
          * @brief Generates locations for the game
          */
-        void generate_locations();
+        int generate_locations();
 
         /**
          * @brief Sets the player

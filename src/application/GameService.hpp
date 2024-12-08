@@ -1,6 +1,9 @@
 #ifndef GAMESERVICE_HPP
 #define GAMESERVICE_HPP
 
+#define GAME_START_SUCCESS 0
+#define GAME_START_FAILURE 1
+
 #include "../domain/common/Array.hpp"
 
 namespace domain {

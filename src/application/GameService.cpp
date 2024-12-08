@@ -3,6 +3,7 @@
 #include "../domain/common/Location.hpp"
 #include "../domain/common/Direction.hpp"
 #include "../domain/gameobject/incl/GameObject.hpp"
+#include "../domain/factories/DungeonFactory.h"
 
 namespace application {
 
@@ -17,15 +18,23 @@ namespace application {
     }
 
     int GameService::start(const int location_amount) {
-        // random start
+        const auto max_tries = 3;
+        auto tries = 0;
+        while (locations_ == nullptr && tries < max_tries) {
+            locations_ = factories::generate_dungeon(location_amount);
+            tries++;
+        }
+        if (locations_ == nullptr) {
+            return GAME_START_FAILURE;
+        }
         quit_ = false;
-        return 0;
+        return GAME_START_SUCCESS;
     }
 
     int GameService::start(const char* file_path) {
         locations_ = file_reader::read_file(file_path);
         quit_ = false;
-        return 0;
+        return GAME_START_SUCCESS;
     }
 
     void GameService::turn() {
@@ -85,4 +94,5 @@ namespace application {
     int GameService::damage_of_the_round() const {
         return damage_of_the_round_;
     }
+
 }
